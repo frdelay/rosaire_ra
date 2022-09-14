@@ -26,7 +26,7 @@ class LocalNotificationService {
           presentAlert: true,
           presentBadge: true,
           presentSound: true,
-          badgeNumber: 5,
+          //badgeNumber: 5,
           attachments: [],
       );
 
@@ -104,7 +104,7 @@ class LocalNotificationService {
     const int notificationNumber = 15;
 
     for (int i = 1; i <= notificationNumber; i = i + 1) {
-      int processedMeditationNumber = meditationNumber - 1 + i;
+      int processedMeditationNumber = meditationNumber  + i;
       int selectedMeditationNumber = selectMeditationNumber(processedMeditationNumber);
 
       // TODO: remove print below
@@ -114,7 +114,7 @@ class LocalNotificationService {
       String notificationTitle = meditationNotification.titre;
 
       DateTime notificationDate = dateInit.add(Duration(seconds: 5 * i));
-      LocalNotificationService().showNotifDate(notificationDate, "$notificationTitle / $i", i);
+      LocalNotificationService().showNotifDate(notificationDate, "$notificationTitle \n$i / $notificationDate / $selectedMeditationNumber", i);
 
       // TODO: remove print below
       print("accueil.dart / notif $i $notificationDate $notificationTitle $selectedMeditationNumber");
