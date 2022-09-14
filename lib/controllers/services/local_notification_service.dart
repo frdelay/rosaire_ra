@@ -58,14 +58,14 @@ class LocalNotificationService {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  void showNotif(int delay) async {
+  void showNotif(int delay, int id) async {
     NotificationDetails platformChannelSpecifics = NotificationDetails(
         android: _androidNotificationDetails,
         iOS: _iosNotificationDetails,
     );
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
+        id,
         "${tz.TZDateTime.now}",
         "Aujourd'hui nouveau mystère",
         tz.TZDateTime.now(tz.local).add(Duration(seconds: delay)),
@@ -75,7 +75,7 @@ class LocalNotificationService {
             UILocalNotificationDateInterpretation.absoluteTime);
   }
 
-  showNotifDate(DateTime date, String titre) {
+  showNotifDate(DateTime date, String titre, int id) {
     NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: _androidNotificationDetails,
       iOS: _iosNotificationDetails,
@@ -83,20 +83,20 @@ class LocalNotificationService {
     var time = tz.TZDateTime.from(date, tz.local);
 
     flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
+        id,
         titre,
         "Aujourd'hui nouveau mystère",
         time,
         platformChannelSpecifics,
         androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime
+        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
   /// Generates notifications for the next 30 days.
   generate30Notifications({required int meditationNumber}) async {
     List<Meditation> meditations = await Meditation.getMeditPhp();
-    DateTime dateInit = DateTime.now().add(const Duration(seconds: 30));
+    DateTime dateInit = DateTime.now().add(const Duration(seconds: 10));
 
     // TODO: remove print below
     print("##### meditationNumber: $meditationNumber #####");
@@ -113,8 +113,8 @@ class LocalNotificationService {
       Meditation meditationNotification = meditations[selectedMeditationNumber];
       String notificationTitle = meditationNotification.titre;
 
-      DateTime notificationDate = dateInit.add(Duration(seconds: 300 * i));
-      LocalNotificationService().showNotifDate(notificationDate, "$notificationTitle / $i");
+      DateTime notificationDate = dateInit.add(Duration(seconds: 5 * i));
+      LocalNotificationService().showNotifDate(notificationDate, "$notificationTitle / $i", i);
 
       // TODO: remove print below
       print("accueil.dart / notif $i $notificationDate $notificationTitle $selectedMeditationNumber");
