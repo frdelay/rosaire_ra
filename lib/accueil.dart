@@ -49,7 +49,7 @@ class _AccueilState extends State<Accueil> {
   }
 
   // on récupère les données de l'utilisateur depuis la shared préference Login
-  void getUserPhp(String loginId) async {
+  Future<void> getUserPhp(String loginId) async {
     //print("medit.dart : uri = http://app.equipes-rosaire.org/user2.php?Login=$loginId");
     var uri =
         Uri.parse("http://app.equipes-rosaire.org/user2.php?Login=$loginId");
@@ -71,8 +71,11 @@ class _AccueilState extends State<Accueil> {
     });
   }
 
-  getMeditations() async {
+  Future<void> getMeditations() async {
     var meditations = await Meditation.getMeditPhp();
+
+    print("playeraudio ${meditationdujour.audioUrl}");
+    //Duration? longer = await playeraudio.setUrl(meditationdujour.audioUrl);
 
     setState(() {
       meditationdujour = meditations[nummedit];
@@ -81,8 +84,7 @@ class _AccueilState extends State<Accueil> {
         meditationNumber: nummedit,
       );
     });
-    //await playeraudio.setUrl(meditationdujour.audioUrl);
-    //print("playeraudio ${meditationdujour.audioUrl}");
+    
   }
 
   @override

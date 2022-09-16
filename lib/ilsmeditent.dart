@@ -246,9 +246,24 @@ class _IlsMeditentState extends State<IlsMeditent> {
                               Text(usersConnected[index]["DateConnexion"]),
   
                         ]);}
+          ),
+
+// Raphael
+           ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: usersConnected.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Row(
+                    children: [
+                          Text(usersConnected[index]["Meditation"],
+                              style: TextStyle(backgroundColor: Colors.red)),
+                              Text(usersConnected[index]["Prenom"]),
+                              Text(usersConnected[index]["Ville"]),
+                              Text(usersConnected[index]["DateConnexion"]),
+  
+                        ]);}
           )
-
-
 
 
           ]),

@@ -69,7 +69,8 @@ class EnvMsg extends StatelessWidget {
                 Container(
                   child: TextField(
                     style: TextStyle (height:1.0),
-
+                    minLines: 3,
+                    maxLines: 10,
                     keyboardType: TextInputType.multiline,
                     onChanged: (text) {
                       print('TexteMessage : $text');

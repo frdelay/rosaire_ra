@@ -75,7 +75,7 @@ class LocalNotificationService {
             UILocalNotificationDateInterpretation.absoluteTime);
   }
 
-  showNotifDate(DateTime date, String titre, int id) {
+  showNotifDate(DateTime date, String titre, String text, int id) {
     NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: _androidNotificationDetails,
       iOS: _iosNotificationDetails,
@@ -85,7 +85,7 @@ class LocalNotificationService {
     flutterLocalNotificationsPlugin.zonedSchedule(
         id,
         titre,
-        "Aujourd'hui nouveau mystère",
+        text,
         time,
         platformChannelSpecifics,
         androidAllowWhileIdle: true,
@@ -113,11 +113,17 @@ class LocalNotificationService {
       Meditation meditationNotification = meditations[selectedMeditationNumber];
       String notificationTitle = meditationNotification.titre;
 
-      DateTime notificationDate = dateInit.add(Duration(seconds: 5 * i));
-      LocalNotificationService().showNotifDate(notificationDate, "$notificationTitle \n$i / $notificationDate / $selectedMeditationNumber", i);
+      // DateTime notificationDate = dateInit.add(Duration(seconds: 5 * i));
+
+      DateTime now = DateTime.now();
+      DateTime notificationDate = DateTime(now.year, now.month, now.day + i, 7, 0 ,0);
+      
+      int notifId = int.parse('${now.year}${now.month}${now.day + i}');
+
+      LocalNotificationService().showNotifDate(notificationDate, "$notificationTitle \n$i / $notificationDate / $selectedMeditationNumber", "text: $notifId", notifId);
 
       // TODO: remove print below
-      print("accueil.dart / notif $i $notificationDate $notificationTitle $selectedMeditationNumber");
+      print("accueil.dart / notif $i $notificationDate $notificationTitle $selectedMeditationNumber $notifId");
     }
   }
 }
