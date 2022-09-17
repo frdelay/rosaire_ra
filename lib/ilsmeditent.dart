@@ -69,7 +69,7 @@ class _IlsMeditentState extends State<IlsMeditent> {
               child: Text("ils méditent",
                   style: Theme.of(context).textTheme.headline1),
             ),
-            /*
+            
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -189,7 +189,7 @@ class _IlsMeditentState extends State<IlsMeditent> {
                   );
                 }),
 
-            */ 
+         
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,

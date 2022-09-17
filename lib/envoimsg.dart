@@ -64,7 +64,7 @@ class EnvMsg extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text("Bonjour $aPrenom, \nmerci de nous contacter, nous vous répondrons dans les meilleurs délais."),
+                Text("Bonjour $aPrenom, \nvous aimez les méditations du Rosaire, \nvous souhaitez rejoindre une équipe près de chez vous\nlaissez nous votre numéro de téléphone\nnous vous répondrons dans les meilleurs délais."),
                 Text("Votre email : $aEmail\n"),
                 Container(
                   child: TextField(
