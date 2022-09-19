@@ -19,18 +19,19 @@ class _IlsMeditentState extends State<IlsMeditent> {
   }
 
   getConnectPhp() async {
-    var uri = Uri.parse("http://app.equipes-rosaire.org/journal2.php");
+    var uri = Uri.parse("http://app.equipes-rosaire.org/journaltri.php");
     var response = await http.post(uri);
 
     var jsonConnexions = jsonDecode(response.body);
     print(jsonConnexions);
+    print(jsonConnexions.runtimeType);
 
-    jsonConnexions.forEach((data) {
-      print(data);
-      usersConnected.add(data);
+    Map<String, dynamic>.from(jsonConnexions).forEach((String key, dynamic value) {
+
+    usersConnected.add(<String,dynamic>{key:value});
     });
 
-    ;
+
 
     setState(() {
       usersConnected = usersConnected;
@@ -70,200 +71,240 @@ class _IlsMeditentState extends State<IlsMeditent> {
                   style: Theme.of(context).textTheme.headline1),
             ),
             
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: usersConnected.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 3.0,
-                            color: Color.fromARGB(
-                                220, 37, 183, 135), // red as border color
-                          ),
-                          color: Color.fromRGBO(43, 62, 143, 1),
-                        ),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                            Text(usersConnected[index]["Meditation"],
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1
-                                    ?.merge(TextStyle(color: Colors.white)))
-                          ]),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            child: Row(
-                              children: [Expanded(
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    border: Border(
-                                      top: BorderSide(
-                                          color: Color.fromARGB(0, 250, 250, 250)),
-                                      left: BorderSide(
-                                          width: 3.0,
-                                          color: Color.fromARGB(220, 37, 183, 135)),
-                                      right: BorderSide(
-                                          color: Color.fromARGB(220, 37, 183, 135)),
-                                      bottom: BorderSide(
-                                          color: Color.fromARGB(0, 37, 183, 134)),
-                                    ),
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 6.0),
-                                    child: Row(
-                                      children: [
-                                        Text(usersConnected[index]["Prenom"]),
-                                      ],
-                                    ),
-                                  ),
-                                ),),
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    border: Border(
-                                      top: BorderSide(
-                                          color: Color.fromARGB(0, 37, 183, 134)),
-                                      left: BorderSide(
-                                          color: Color.fromARGB(0, 30, 198, 27)),
-                                      right: BorderSide(
-                                          color: Color.fromARGB(220, 37, 183, 135)),
-                                      bottom: BorderSide(
-                                          color: Color.fromARGB(0, 37, 183, 134)),
-                                    ),
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      children: [
-                                        Text(usersConnected[index]["Ville"]),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    border: Border(
-                                      top: BorderSide(
-                                          color: Color.fromARGB(0, 37, 183, 134)),
-                                      left: BorderSide(
-                                          color: Color.fromARGB(0, 30, 198, 27)),
-                                      right: BorderSide(
-                                          width: 3.0,
-                                          color: Color.fromARGB(220, 37, 183, 135)),
-                                      bottom: BorderSide(
-                                          color: Color.fromARGB(0, 37, 183, 134)),
-                                    ),
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      children: [
-                                        Text(usersConnected[index]["DateConnexion"],
-                                            style:
-                                                Theme.of(context).textTheme.subtitle2)
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                }),
+            // ListView.builder(
+            //     physics: NeverScrollableScrollPhysics(),
+            //     shrinkWrap: true,
+            //     itemCount: usersConnected.length,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       return Column(
+            //         children: [
+            //           Container(
+            //             decoration: BoxDecoration(
+            //               border: Border.all(
+            //                 width: 3.0,
+            //                 color: Color.fromARGB(
+            //                     220, 37, 183, 135), // red as border color
+            //               ),
+            //               color: Color.fromRGBO(43, 62, 143, 1),
+            //             ),
+            //             child: Padding(
+            //               padding:
+            //                   const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 children: [
+            //                 Text(usersConnected[index]["Meditation"],
+            //                     textAlign: TextAlign.center,
+            //                     style: Theme.of(context)
+            //                         .textTheme
+            //                         .subtitle1
+            //                         ?.merge(TextStyle(color: Colors.white)))
+            //               ]),
+            //             ),
+            //           ),
+            //           Column(
+            //             children: [
+            //               Container(
+            //                 child: Row(
+            //                   children: [Expanded(
+            //                     child: Container(
+            //                       decoration: const BoxDecoration(
+            //                         border: Border(
+            //                           top: BorderSide(
+            //                               color: Color.fromARGB(0, 250, 250, 250)),
+            //                           left: BorderSide(
+            //                               width: 3.0,
+            //                               color: Color.fromARGB(220, 37, 183, 135)),
+            //                           right: BorderSide(
+            //                               color: Color.fromARGB(220, 37, 183, 135)),
+            //                           bottom: BorderSide(
+            //                               color: Color.fromARGB(0, 37, 183, 134)),
+            //                         ),
+            //                         color: Color.fromARGB(255, 255, 255, 255),
+            //                       ),
+            //                       child: Padding(
+            //                         padding:
+            //                             const EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 6.0),
+            //                         child: Row(
+            //                           children: [
+            //                             Text(usersConnected[index]["Prenom"]),
+            //                           ],
+            //                         ),
+            //                       ),
+            //                     ),),
+            //                     Container(
+            //                       decoration: const BoxDecoration(
+            //                         border: Border(
+            //                           top: BorderSide(
+            //                               color: Color.fromARGB(0, 37, 183, 134)),
+            //                           left: BorderSide(
+            //                               color: Color.fromARGB(0, 30, 198, 27)),
+            //                           right: BorderSide(
+            //                               color: Color.fromARGB(220, 37, 183, 135)),
+            //                           bottom: BorderSide(
+            //                               color: Color.fromARGB(0, 37, 183, 134)),
+            //                         ),
+            //                         color: Color.fromARGB(255, 255, 255, 255),
+            //                       ),
+            //                       child: Padding(
+            //                         padding: const EdgeInsets.all(6.0),
+            //                         child: Row(
+            //                           children: [
+            //                             Text(usersConnected[index]["Ville"]),
+            //                           ],
+            //                         ),
+            //                       ),
+            //                     ),
+            //                     Container(
+            //                       decoration: const BoxDecoration(
+            //                         border: Border(
+            //                           top: BorderSide(
+            //                               color: Color.fromARGB(0, 37, 183, 134)),
+            //                           left: BorderSide(
+            //                               color: Color.fromARGB(0, 30, 198, 27)),
+            //                           right: BorderSide(
+            //                               width: 3.0,
+            //                               color: Color.fromARGB(220, 37, 183, 135)),
+            //                           bottom: BorderSide(
+            //                               color: Color.fromARGB(0, 37, 183, 134)),
+            //                         ),
+            //                         color: Color.fromARGB(255, 255, 255, 255),
+            //                       ),
+            //                       child: Padding(
+            //                         padding: const EdgeInsets.all(6.0),
+            //                         child: Row(
+            //                           children: [
+            //                             Text(usersConnected[index]["DateConnexion"],
+            //                                 style:
+            //                                     Theme.of(context).textTheme.subtitle2)
+            //                           ],
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ],
+            //       );
+            //     }),
 
          
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: usersConnected.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Table(
-                  columnWidths: const <int, TableColumnWidth>{
-          0: FixedColumnWidth(100),
-          1: FixedColumnWidth(40),
-          2: FixedColumnWidth(80)},
-                    //border: TableBorder.all(),
-                    children: <TableRow>[
-                      TableRow(
-                        children: [
-                          TableCell(
-                          child: Text(usersConnected[index]["Meditation"],
-                              style: TextStyle(backgroundColor: Colors.red)),
-                        ),
-                        TableCell(child:Text('')),
-                        TableCell(child:Text(''))
-                        ]
-                      ),
-                      TableRow(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(usersConnected[index]["Prenom"]),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(usersConnected[index]["Ville"]),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(usersConnected[index]["DateConnexion"]),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                }),
+          //   ListView.builder(
+          //       physics: NeverScrollableScrollPhysics(),
+          //       shrinkWrap: true,
+          //       itemCount: usersConnected.length,
+          //       itemBuilder: (BuildContext context, int index) {
+          //         return Table(
+          //         columnWidths: const <int, TableColumnWidth>{
+          // 0: FixedColumnWidth(100),
+          // 1: FixedColumnWidth(40),
+          // 2: FixedColumnWidth(80)},
+          //           //border: TableBorder.all(),
+          //           children: <TableRow>[
+          //             TableRow(
+          //               children: [
+          //                 TableCell(
+          //                 child: Text(usersConnected[index]["Meditation"],
+          //                     style: TextStyle(backgroundColor: Colors.red)),
+          //               ),
+          //               TableCell(child:Text('')),
+          //               TableCell(child:Text(''))
+          //               ]
+          //             ),
+          //             TableRow(
+          //               children: [
+          //                 Padding(
+          //                   padding: const EdgeInsets.all(8.0),
+          //                   child: Text(usersConnected[index]["Prenom"]),
+          //                 ),
+          //                 Padding(
+          //                   padding: const EdgeInsets.all(8.0),
+          //                   child: Text(usersConnected[index]["Ville"]),
+          //                 ),
+          //                 Padding(
+          //                   padding: const EdgeInsets.all(8.0),
+          //                   child: Text(usersConnected[index]["DateConnexion"]),
+          //                 ),
+          //               ],
+          //             ),
+          //           ],
+          //         );
+          //       }),
                 
-           ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: usersConnected.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Row(
-                    children: [
-                          Text(usersConnected[index]["Meditation"],
-                              style: TextStyle(backgroundColor: Colors.red)),
-                              Text(usersConnected[index]["Prenom"]),
-                              Text(usersConnected[index]["Ville"]),
-                              Text(usersConnected[index]["DateConnexion"]),
-  
-                        ]);}
-          ),
+          //  ListView.builder(
+          //       physics: NeverScrollableScrollPhysics(),
+          //       shrinkWrap: true,
+          //       itemCount: usersConnected.length,
+          //       itemBuilder: (BuildContext context, int index) {
+          //         return Row(
+          //           children: [
+          //                 Text(usersConnected[index]["Meditation"],
+          //                     style: TextStyle(backgroundColor: Colors.red)),
+          //                     Text(usersConnected[index]["Prenom"]),
+          //                     Text(usersConnected[index]["Ville"]),
+          //                     Text(usersConnected[index]["DateConnexion"]),
+          //
+          //               ]);}
+          // ),
+
+            // '...' it's spread operator (https://www.geeksforgeeks.org/dart-spread-operator/)
+            ...List<Widget>.generate(
+              usersConnected.length,
+              (index) => Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      // MediaQuery.of(context).size.width is equal to the width of the screen.
+                      // so 0.25 * MediaQuery.of(context).size.width is equal to 1/4 of the screen width
+                      width: 0.25 * MediaQuery.of(context).size.width,
+                      child: Text(
+                        usersConnected.elementAt(index).keys.first,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List<Widget>.generate(
+                          usersConnected.elementAt(index).values.first.length,
+                          (index2) => Text(usersConnected
+                              .elementAt(index)
+                              .values
+                              .first[index2]
+                              .toString()),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
 // Raphael
-           ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: usersConnected.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Row(
-                    children: [
-                          Text(usersConnected[index]["Meditation"],
-                              style: TextStyle(backgroundColor: Colors.red)),
-                              Text(usersConnected[index]["Prenom"]),
-                              Text(usersConnected[index]["Ville"]),
-                              Text(usersConnected[index]["DateConnexion"]),
-  
-                        ]);}
-          )
+//            ListView.builder(
+//                 physics: NeverScrollableScrollPhysics(),
+//                 shrinkWrap: true,
+//                 itemCount: usersConnected.length,
+//                 itemBuilder: (BuildContext context, int index) {
+//                   return Row(
+//                     children: [
+//                           Text(usersConnected[index]["Meditation"],
+//                               style: TextStyle(backgroundColor: Colors.red)),
+//                               Text(usersConnected[index]["Prenom"]),
+//                               Text(usersConnected[index]["Ville"]),
+//                               Text(usersConnected[index]["DateConnexion"]),
+//
+//                         ]);}
+//           )
 
 
           ]),
