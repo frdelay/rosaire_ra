@@ -42,10 +42,10 @@ class _AccueilState extends State<Accueil> {
 
   @override
   void initState() {
-    super.initState();
     getUserPhp(widget.login);
     localNotificationService = LocalNotificationService();
     localNotificationService.init();
+    super.initState();
   }
 
   // on récupère les données de l'utilisateur depuis la shared préference Login
@@ -74,9 +74,6 @@ class _AccueilState extends State<Accueil> {
   Future<void> getMeditations() async {
     var meditations = await Meditation.getMeditPhp();
 
-    print("playeraudio ${meditationdujour.audioUrl}");
-    //Duration? longer = await playeraudio.setUrl(meditationdujour.audioUrl);
-
     setState(() {
       meditationdujour = meditations[nummedit];
 
@@ -84,7 +81,10 @@ class _AccueilState extends State<Accueil> {
         meditationNumber: nummedit,
       );
     });
-    
+
+    print("playeraudio : ${meditationdujour.audioUrl}");
+    await playeraudio.setUrl(meditationdujour.audioUrl);
+
   }
 
   @override
