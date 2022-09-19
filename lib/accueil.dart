@@ -83,6 +83,7 @@ class _AccueilState extends State<Accueil> {
     });
 
     print("playeraudio : ${meditationdujour.audioUrl}");
+    await playeraudio.setUrl(meditationdujour.audioUrl);
 
   }
 
