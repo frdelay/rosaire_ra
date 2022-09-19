@@ -83,421 +83,428 @@ class _AccueilState extends State<Accueil> {
     });
 
     print("playeraudio : ${meditationdujour.audioUrl}");
-    await playeraudio.setUrl(meditationdujour.audioUrl);
 
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 60,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: Center(
-          child: Container(
-            height: 40,
-            child: Image.asset(
-              'assets/EDR-logo-long.png',
-              fit: BoxFit.fitWidth,
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 60,
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.white,
+            title: Center(
+              child: Container(
+                height: 40,
+                child: Image.asset(
+                  'assets/EDR-logo-long.png',
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: ListView(
-                children: [
-                  Text(
-                    "Bonjour $prenom !",
-                    style: Theme.of(context).textTheme.headline2?.merge(
-                        TextStyle(color: colorTitle[meditationdujour.code[0]])),
-                    textAlign: TextAlign.center,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text:
-                            "Aujourd'hui, ${jourFR[dayOfWeek]} $day ${moisFR[mois]}  $year, \nvous méditez un ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2
-                            ?.merge(TextStyle(
-                              color: colorTitle[meditationdujour.code[0]],
-                            )),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text:
-                                  "mystère ${famille[meditationdujour.code[0]]}\n",
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: colorTitle[meditationdujour.code[0]],
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(0.90))),
-                    child: Column(children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 4.0),
-                        child: Container(
-                            width: double.infinity,
-                            child: Text(meditationdujour.titre,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    ?.merge(
-                                        const TextStyle(color: Colors.white)))),
-                      ),
-                      Container(
-                          width: double.infinity,
-                          child: Text("${meditationdujour.titreEvangile}\n",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline3
-                                  ?.merge(
-                                      const TextStyle(color: Colors.white)))),
-                    ]),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Container(
-                    child: Text(meditationdujour.texteEvangile,
-                        style: Theme.of(context).textTheme.bodyText1),
-                  ),
-                  const SizedBox(height: 20.0),
-                  const Divider(
-                    height: 20,
-                    thickness: 1,
-                    color: Color.fromARGB(220, 37, 183, 135),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/ico1.png',
-                        height: 30,
-                        width: 30,
+          body: isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: ListView(
+                    children: [
+                      Text(
+                        "Bonjour $prenom !",
+                        style: Theme.of(context).textTheme.headline2?.merge(
+                            TextStyle(color: colorTitle[meditationdujour.code[0]])),
+                        textAlign: TextAlign.center,
                       ),
                       Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Méditation",
-                              style: Theme.of(context).textTheme.headline4)
-                          //  style: TextStyle(
-                          //    fontWeight: FontWeight.bold, fontSize: 18)),
-                          ),
-                    ],
-                  ),
-                  const SizedBox(height: 20.0),
-                  Container(
-                      child: Text(meditationdujour.texteMeditation,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline3)), //style: TextStyle(fontSize: 18)),
-
-                  const SizedBox(height: 20.0),
-                  const Divider(
-                    height: 20,
-                    thickness: 1,
-                    color: Color.fromARGB(220, 37, 183, 135),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/ico2.png',
-                        height: 30,
-                        width: 30,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Intentions",
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20.0),
-                  Container(
-                    child: Text(
-                      meditationdujour.texteIntentions,
-                      style: Theme.of(context).textTheme.headline5,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: SizedBox(height: 20.0),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Divider(
-                      height: 20,
-                      thickness: 1,
-                      color: Color.fromARGB(220, 37, 183, 135),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 255, 240, 167),
-                          borderRadius: BorderRadius.circular(17)),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    0.0, 0.0, 5.0, 0.0),
-                                child: Image.asset(
-                                  'assets/ico5.png',
-                                  height: 30,
-                                  width: 30,
-                                ),
-                              ),
-                              Text("Fruit du mystère",
-                                  style: Theme.of(context).textTheme.headline4),
+                        padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text:
+                                "Aujourd'hui, ${jourFR[dayOfWeek]} $day ${moisFR[mois]}  $year, \nvous méditez un ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.merge(TextStyle(
+                                  color: colorTitle[meditationdujour.code[0]],
+                                )),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text:
+                                      "mystère ${famille[meditationdujour.code[0]]}\n",
+                                  style:
+                                      const TextStyle(fontWeight: FontWeight.bold))
                             ],
                           ),
-                          const SizedBox(height: 10.0),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: colorTitle[meditationdujour.code[0]],
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(0.90))),
+                        child: Column(children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 4.0),
+                            child: Container(
+                                width: double.infinity,
+                                child: Text(meditationdujour.titre,
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1
+                                        ?.merge(
+                                            const TextStyle(color: Colors.white)))),
+                          ),
                           Container(
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  0.0, 0.0, 0.0, 10.0),
-                              child: Text(meditationdujour.texteFruit,
-                                  style: Theme.of(context).textTheme.headline3),
+                              width: double.infinity,
+                              child: Text("${meditationdujour.titreEvangile}\n",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3
+                                      ?.merge(
+                                          const TextStyle(color: Colors.white)))),
+                        ]),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Container(
+                        child: Text(meditationdujour.texteEvangile,
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ),
+                      const SizedBox(height: 20.0),
+                      const Divider(
+                        height: 20,
+                        thickness: 1,
+                        color: Color.fromARGB(220, 37, 183, 135),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/ico1.png',
+                            height: 30,
+                            width: 30,
+                          ),
+                          Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Méditation",
+                                  style: Theme.of(context).textTheme.headline4)
+                              //  style: TextStyle(
+                              //    fontWeight: FontWeight.bold, fontSize: 18)),
+                              ),
+                        ],
+                      ),
+                      const SizedBox(height: 20.0),
+                      Container(
+                          child: Text(meditationdujour.texteMeditation,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3)), //style: TextStyle(fontSize: 18)),
+
+                      const SizedBox(height: 20.0),
+                      const Divider(
+                        height: 20,
+                        thickness: 1,
+                        color: Color.fromARGB(220, 37, 183, 135),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/ico2.png',
+                            height: 30,
+                            width: 30,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Intentions",
+                              style: Theme.of(context).textTheme.headline4,
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(17),
-                      border: Border.all(
-                        color: const Color.fromARGB(220, 37, 183, 135),
-                        width: 2,
+                      const SizedBox(height: 20.0),
+                      Container(
+                        child: Text(
+                          meditationdujour.texteIntentions,
+                          style: Theme.of(context).textTheme.headline5,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        Row(
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: SizedBox(height: 20.0),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Divider(
+                          height: 20,
+                          thickness: 1,
+                          color: Color.fromARGB(220, 37, 183, 135),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 255, 240, 167),
+                              borderRadius: BorderRadius.circular(17)),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        0.0, 0.0, 5.0, 0.0),
+                                    child: Image.asset(
+                                      'assets/ico5.png',
+                                      height: 30,
+                                      width: 30,
+                                    ),
+                                  ),
+                                  Text("Fruit du mystère",
+                                      style: Theme.of(context).textTheme.headline4),
+                                ],
+                              ),
+                              const SizedBox(height: 10.0),
+                              Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      0.0, 0.0, 0.0, 10.0),
+                                  child: Text(meditationdujour.texteFruit,
+                                      style: Theme.of(context).textTheme.headline3),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(17),
+                          border: Border.all(
+                            color: const Color.fromARGB(220, 37, 183, 135),
+                            width: 2,
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                                  child: Image.asset(
+                                    'assets/ico4.png',
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                ),
+                                Text("Les clausules",
+                                    style: Theme.of(context).textTheme.headline4),
+                              ],
+                            ),
+                            const SizedBox(height: 20.0),
+                            Padding(
+                                padding: const EdgeInsets.all(0.8),
+                                child: Container(
+                                    child: Text(meditationdujour.texteClausules,
+                                        textAlign: TextAlign.center,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1
+                                            ?.merge(const TextStyle(
+                                                color: Color.fromRGBO(
+                                                    43, 62, 143, 1)))))),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      const SizedBox(height: 20.0),
+                      if (meditationdujour.imgUrl != "")
+                        Image(image: NetworkImage(meditationdujour.imgUrl)),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Padding(
                               padding:
                                   const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
                               child: Image.asset(
-                                'assets/ico4.png',
+                                'assets/ico6.png',
                                 height: 30,
                                 width: 30,
                               ),
                             ),
-                            Text("Les clausules",
-                                style: Theme.of(context).textTheme.headline4),
+                            Container(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                                child: Text(
+                                  "Audio",
+                                  style: Theme.of(context).textTheme.headline4,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                        const SizedBox(height: 20.0),
-                        Padding(
-                            padding: const EdgeInsets.all(0.8),
-                            child: Container(
-                                child: Text(meditationdujour.texteClausules,
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        ?.merge(const TextStyle(
-                                            color: Color.fromRGBO(
-                                                43, 62, 143, 1)))))),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  const SizedBox(height: 20.0),
-                  if (meditationdujour.imgUrl != "")
-                    Image(image: NetworkImage(meditationdujour.imgUrl)),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
-                          child: Image.asset(
-                            'assets/ico6.png',
-                            height: 30,
-                            width: 30,
+                      ),
+                      const SizedBox(height: 20.0),
+                      /**/
+                      Container(
+                          //Audio
+                          child: Row(
+                        children: [
+                          isPlaying == false
+                              ? IconButton(
+                                  icon: const Icon(Icons.play_arrow),
+                                  tooltip: 'lancer l audio',
+                                  onPressed: () {
+                                    print(meditationdujour.audioUrl);
+                                    playeraudio.play();
+                                    setState(() {
+                                      isPlaying = true;
+                                    });
+                                  },
+                                )
+                              : IconButton(
+                                  icon: const Icon(Icons.pause),
+                                  tooltip: 'pause',
+                                  onPressed: () {
+                                    print("pause");
+                                    playeraudio.pause();
+                                    setState(() {
+                                      isPlaying = false;
+                                    });
+                                  },
+                                ),
+                        ],
+                      )),
+                      const SizedBox(height: 20.0),
+                      const Divider(
+                        height: 20,
+                        thickness: 1,
+                        color: Color.fromARGB(220, 37, 183, 135),
+                      ),
+                      /**/
+                      const SizedBox(height: 20.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                            child: Image.asset(
+                              'assets/ico7.png',
+                              height: 30,
+                              width: 30,
+                            ),
                           ),
-                        ),
-                        Container(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                          Container(
+                            //Video
                             child: Text(
-                              "Audio",
+                              "Video",
                               style: Theme.of(context).textTheme.headline4,
                               textAlign: TextAlign.center,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      const SizedBox(height: 20.0),
+                      Container(
+                          //child: Text(videoUrl, style: TextStyle(fontSize: 14)),
+                          child: WebView(
+                            initialUrl: meditationdujour.videoUrl,
+                            javascriptMode: JavascriptMode.unrestricted,
+                          ),
+                          height: 200),
+                    ],
+                  ),
+                ),
+          bottomSheet: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 3 - 10,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AfficheSite(),
+                        ));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                    child: Text(
+                      'Vers\nle site',
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 20.0),
-                  /**/
-                  Container(
-                      //Audio
-                      child: Row(
-                    children: [
-                      isPlaying == false
-                          ? IconButton(
-                              icon: const Icon(Icons.play_arrow),
-                              tooltip: 'lancer l audio',
-                              onPressed: () {
-                                print(meditationdujour.audioUrl);
-                                playeraudio.play();
-                                setState(() {
-                                  isPlaying = true;
-                                });
-                              },
-                            )
-                          : IconButton(
-                              icon: const Icon(Icons.pause),
-                              tooltip: 'pause',
-                              onPressed: () {
-                                print("pause");
-                                playeraudio.pause();
-                                setState(() {
-                                  isPlaying = false;
-                                });
-                              },
-                            ),
-                    ],
-                  )),
-                  const SizedBox(height: 20.0),
-                  const Divider(
-                    height: 20,
-                    thickness: 1,
-                    color: Color.fromARGB(220, 37, 183, 135),
-                  ),
-                  /**/
-                  const SizedBox(height: 20.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
-                        child: Image.asset(
-                          'assets/ico7.png',
-                          height: 30,
-                          width: 30,
-                        ),
-                      ),
-                      Container(
-                        //Video
-                        child: Text(
-                          "Video",
-                          style: Theme.of(context).textTheme.headline4,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20.0),
-                  Container(
-                      //child: Text(videoUrl, style: TextStyle(fontSize: 14)),
-                      child: WebView(
-                        initialUrl: meditationdujour.videoUrl,
-                        javascriptMode: JavascriptMode.unrestricted,
-                      ),
-                      height: 200),
-                ],
-              ),
+                  style: ElevatedButton.styleFrom(
+                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      elevation: 10,
+                      minimumSize: const Size(45, 30))),
             ),
-      bottomSheet: Container(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AfficheSite(),
-                      ));
-                },
-                child: const Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 6.0, 15.0, 6.0),
-                  child: Text(
-                    'Vers\nle site',
-                    textAlign: TextAlign.center,
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 3 - 10,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const IlsMeditent(),
+                        ));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                    child: Text('Ils\nméditent', textAlign: TextAlign.center),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(220, 37, 183, 135),
-                    elevation: 10,
-                    minimumSize: const Size(45, 30))),
+                  style: ElevatedButton.styleFrom(
+                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      elevation: 10,
+                      minimumSize: const Size(60, 30))),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 3 - 10,
+
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              EnvMsg(widget.login, prenom, email),
+                        ));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                    child:
+                        Text('Laisser\nun message', textAlign: TextAlign.center),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      elevation: 10,
+                      minimumSize: const Size(50, 30))),
+            ),
+              ],
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const IlsMeditent(),
-                      ));
-                },
-                child: const Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 6.0, 15.0, 6.0),
-                  child: Text('Ils\nméditent', textAlign: TextAlign.center),
-                ),
-                style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(220, 37, 183, 135),
-                    elevation: 10,
-                    minimumSize: const Size(60, 30))),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            EnvMsg(widget.login, prenom, email),
-                      ));
-                },
-                child: const Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 6.0, 15.0, 6.0),
-                  child:
-                      Text('Laisser\nun message', textAlign: TextAlign.center),
-                ),
-                style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(220, 37, 183, 135),
-                    elevation: 10,
-                    minimumSize: const Size(50, 30))),
-          ),
-        ],
-      )),
+        ),
+      ),
     );
   }
 }
