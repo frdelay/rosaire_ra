@@ -1,9 +1,8 @@
-//modifier Victor
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'form.dart';
 import 'accueil.dart';
-import 'theme.dart';
+import 'meditation_affiche.dart';
+import '_theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -50,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       theme: MonTheme(context),
       debugShowCheckedModeBanner: false,
       home: Builder(builder: (context) {
-        return isLogged == true ? Accueil(login) : UserLog();
+        return isLogged == true ? AffMedit(login) :  Accueil();
       }),
     );
   }

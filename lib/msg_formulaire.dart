@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'ar_msg.dart';
+import 'msg_affiche.dart';
 
 class EnvMsg extends StatelessWidget {
   // paramètres reçus de bouton Message dans accueil.dart

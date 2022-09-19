@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AfficheSite extends StatefulWidget {
+  final String url;
+  const AfficheSite(this.url);
+
   @override
   State<AfficheSite> createState() => _AfficheSiteState();
 }
@@ -9,23 +12,38 @@ class AfficheSite extends StatefulWidget {
 class _AfficheSiteState extends State<AfficheSite> {
   bool isLoading = true;
   late WebViewController controller;
+  String urlSite = "";
+
+  void initState() {
+    final urlSite=widget.url;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Color.fromARGB(255, 82, 98, 90),
+           appBar: AppBar(
+              leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+              toolbarHeight: 50,
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.white,
+              title: Center(
+                child: Container(
+                  height: 80,
+                  child: Image.asset(
+                    'assets/EDR-logo-long.png',
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-          toolbarHeight: 40,
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-        ),
+            ),
         body: Center(
           child: Stack(
             children: [
@@ -37,16 +55,18 @@ class _AfficheSiteState extends State<AfficheSite> {
                 opacity: isLoading ? 0 : 1,
                 child: WebView(
                   onWebViewCreated: (WebViewController webViewController) {},
-                  initialUrl: "https://equipes-rosaire.org",
+                  //initialUrl: urlSite,
+                  initialUrl: "https://equipes-rosaire.org/accueil-appli",
+
                   javascriptMode: JavascriptMode.unrestricted,
                   onPageStarted: (String url) {
-                    print(" WebView onPageStarted");
+                    print(" WebView onPageStarted : $urlSite");
                     setState(() {
                       isLoading = true;
                     });
                   },
                   onPageFinished: (String url) {
-                    print(" WebView onPageFinished $url");
+                    print(" WebView onPageFinished $urlSite");
                     setState(() {
                       isLoading = false;
                     });

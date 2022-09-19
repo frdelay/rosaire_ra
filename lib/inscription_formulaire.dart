@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'accueil.dart';
+import 'meditation_affiche.dart';
 
 class UserLog extends StatelessWidget {
   String uPrenom = "";
@@ -33,7 +33,7 @@ class UserLog extends StatelessWidget {
     await prefs.setString('ppLogin', uLogin);
     print('form.dart : Login = ' + uLogin);
 
-    Navigator.push(ctx, MaterialPageRoute(builder: (ctx) => Accueil(uLogin)));
+    Navigator.push(ctx, MaterialPageRoute(builder: (ctx) => AffMedit(uLogin)));
   }
 
   bool isEmailValid(String email) {

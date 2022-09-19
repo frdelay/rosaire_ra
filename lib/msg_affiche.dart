@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'accueil.dart';
+import 'meditation_affiche.dart';
 
 class ArMsg extends StatelessWidget {
   // paramètres reçus de la bdd  app_msg2
@@ -23,7 +23,7 @@ class ArMsg extends StatelessWidget {
               ),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => Accueil(bLogin)));
+                    MaterialPageRoute(builder: (ctx) => AffMedit(bLogin)));
               }),
           toolbarHeight: 80,
           backgroundColor: Colors.white,
