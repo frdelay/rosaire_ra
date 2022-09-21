@@ -15,7 +15,7 @@ class _AfficheSiteState extends State<AfficheSite> {
   String urlSite = "";
 
   void initState() {
-    final urlSite=widget.url;
+    urlSite = widget.url;
     super.initState();
   }
 
@@ -56,7 +56,7 @@ class _AfficheSiteState extends State<AfficheSite> {
                 child: WebView(
                   onWebViewCreated: (WebViewController webViewController) {},
                   //initialUrl: urlSite,
-                  initialUrl: "https://equipes-rosaire.org/accueil-appli",
+                  initialUrl: urlSite,
 
                   javascriptMode: JavascriptMode.unrestricted,
                   onPageStarted: (String url) {
