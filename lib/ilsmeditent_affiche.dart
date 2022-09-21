@@ -25,15 +25,11 @@ class _IlsMeditentState extends State<IlsMeditent> {
     var response = await http.post(uri);
 
     var jsonConnexions = jsonDecode(response.body);
-    print(jsonConnexions);
-    print(jsonConnexions.runtimeType);
 
-    Map<String, dynamic>.from(jsonConnexions).forEach((String key, dynamic value) {
-
-    usersConnected.add(<String,dynamic>{key:value});
+    Map<String, dynamic>.from(jsonConnexions)
+        .forEach((String key, dynamic value) {
+      usersConnected.add(<String, dynamic>{key: value});
     });
-
-
 
     setState(() {
       usersConnected = usersConnected;
@@ -45,7 +41,7 @@ class _IlsMeditentState extends State<IlsMeditent> {
     return Stack(
       children: [
         Scaffold(
-           appBar: AppBar(
+            appBar: AppBar(
               leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back,
@@ -75,7 +71,6 @@ class _IlsMeditentState extends State<IlsMeditent> {
                       style: Theme.of(context).textTheme.headline1),
                 ),
 
-
                 // '...' it's spread operator (https://www.geeksforgeeks.org/dart-spread-operator/)
                 ...List<Widget>.generate(
                   usersConnected.length,
@@ -85,14 +80,16 @@ class _IlsMeditentState extends State<IlsMeditent> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          color: Colors.blue,
+                          color: colorTitle[
+                              '${usersConnected.elementAt(index).keys.first[0]}'],
                           width: MediaQuery.of(context).size.width,
                           child: Container(
                             margin: const EdgeInsets.only(left: 10),
                             child: Text(
-                              usersConnected.elementAt(index).keys.first,
+                              usersConnected.elementAt(index).keys.first.toString().substring(4),
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
+                                color: Colors.white
                               ),
                             ),
                           ),
@@ -105,17 +102,17 @@ class _IlsMeditentState extends State<IlsMeditent> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: List<Widget>.generate(
-                              usersConnected.elementAt(index).values.first.length - 1,
-                              (index2) => Container(
-                                color: colorTitle[usersConnected
+                              usersConnected
+                                  .elementAt(index)
+                                  .values
+                                  .first
+                                  .length,
+                              (index2) => Text(
+                                usersConnected
                                     .elementAt(index)
                                     .values
-                                    .first['cat']],
-                                child: Text(usersConnected
-                                    .elementAt(index)
-                                    .values
-                                    .first['$index2']
-                                    .toString(),),
+                                    .first[index2]
+                                    .toString(),
                               ),
                             ),
                           ),
@@ -124,28 +121,25 @@ class _IlsMeditentState extends State<IlsMeditent> {
                     ),
                   ),
                 ),
-
-
               ]),
             )),
-
-
         Positioned(
           bottom: 0,
           right: 0,
           child: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter,
-              colors: [
-                Colors.black45.withOpacity(0.7),
-                Colors.transparent,
-              ]
-              ),
+              gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Colors.black45.withOpacity(0.7),
+                    Colors.transparent,
+                  ]),
             ),
             width: MediaQuery.of(context).size.width,
             height: 50,
-          )
-          ,),
+          ),
+        ),
       ],
     );
   }

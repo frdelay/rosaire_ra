@@ -40,6 +40,22 @@ const colorTitle = {
   "G": Color(0xff2E986E),
 };
 
+
+// const coloredIcon4 = {
+//   "J": 'assets/ico4J.png',
+//   "L": 'assets/ico4L.png',
+//   "D": 'assets/ico4D.png',
+//   "G": 'assets/ico4G.png',
+// };
+
+// const coloredIcon2 = {
+//   "J": 'assets/ico2J.png',
+//   "L": 'assets/ico2L.png',
+//   "D": 'assets/ico2D.png',
+//   "G": 'assets/ico2G.png',
+// };
+
+
 const famille = {
   "J": "joyeux",
   "L": "lumineux",

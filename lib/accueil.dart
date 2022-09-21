@@ -106,26 +106,26 @@ class _MyHomePageState extends State {
                   //
                   // bouton d'affichage de la liste "Ils méditent"
                   //
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => IlsMeditent(),
-                        ));
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                    child: Text('Rejoindre une équipe', textAlign: TextAlign.center),
+                  Container( child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AfficheSite("https://equipes-rosaire.org/nous-rejoindre"),
+                              //builder: (context) => AfficheSite_pq(),
+                            ));
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                        child: Text('Rejoinde une équipe', textAlign: TextAlign.center),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(220, 37, 183, 135),
+                          elevation: 10,
+                          minimumSize: const Size(60, 30))),
+                    color: Colors.teal[100],
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(220, 37, 183, 135),
-                      elevation: 10,
-                      minimumSize: const Size(60, 30))),
-                    color: Colors.teal[300],
-                  ),
+
                   //
                   // bouton d'affichage de la liste "Ils méditent"
                   //                  
