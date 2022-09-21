@@ -4,13 +4,28 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'meditation_affiche.dart';
 
-class UserLog extends StatelessWidget {
+class UserLog extends StatefulWidget {
+  @override
+  State<UserLog> createState() => _UserLogState();
+}
+
+class _UserLogState extends State<UserLog> {
   String uPrenom = "";
+
   String uEmail = "";
+
   String uVille = "";
+
   String uUsernum = "";
 
-  final _formKey = GlobalKey<FormState>();
+    late GlobalKey<FormState> _formKey;
+
+  @override
+  void initState() {
+    _formKey = GlobalKey<FormState>();
+    super.initState();
+  }
+
 
   @override
   void ValidForm(BuildContext ctx) async {
@@ -98,7 +113,8 @@ class UserLog extends StatelessWidget {
                           ),
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(15, 10, 20, 24),
-                        )),
+                        )
+                      ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
