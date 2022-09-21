@@ -21,7 +21,7 @@ class _IlsMeditentState extends State<IlsMeditent> {
   }
 
   getConnectPhp() async {
-    var uri = Uri.parse("http://app.equipes-rosaire.org/journaltri2.php");
+    var uri = Uri.parse("https://app.equipes-rosaire.org/journaltri2.php");
     var response = await http.post(uri);
 
     var jsonConnexions = jsonDecode(response.body);

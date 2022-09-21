@@ -15,7 +15,7 @@ class EnvMsg extends StatelessWidget {
   @override
   void ValidForm(BuildContext ctx) async {
     String urlCreation =
-        "http://app.equipes-rosaire.org/msg2.php?Login=$aLogin&Prenom=$aPrenom&Email=$aEmail&TexteMessage=$TexteMessage";
+        "https://app.equipes-rosaire.org/msg2.php?Login=$aLogin&Prenom=$aPrenom&Email=$aEmail&TexteMessage=$TexteMessage";
     print('envoimsg.dart/ValidForm() urlCreation : ' + urlCreation);
 
     var uri = Uri.parse(urlCreation);

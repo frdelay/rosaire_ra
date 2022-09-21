@@ -50,9 +50,9 @@ class _AffMeditState extends State<AffMedit> {
 
   // on récupère les données de l'utilisateur depuis la shared préference Login
   Future<void> getUserPhp(String loginId) async {
-    //print("medit.dart : uri = http://app.equipes-rosaire.org/user2.php?Login=$loginId");
+    //print("medit.dart : uri = https://app.equipes-rosaire.org/user2.php?Login=$loginId");
     var uri =
-        Uri.parse("http://app.equipes-rosaire.org/user2.php?Login=$loginId");
+        Uri.parse("https://app.equipes-rosaire.org/user2.php?Login=$loginId");
     var response = await http.post(uri);
     var jsonMedit = jsonDecode(response.body);
     //print('getUserPhp() ££££££££££££££ Response body: ${response.body}');

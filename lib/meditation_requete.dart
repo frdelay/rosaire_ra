@@ -29,7 +29,7 @@ class Meditation {
     medit.texteIntentions = json["TexteIntentions"];
     medit.texteFruit = json["TexteFruit"];
     medit.texteClausules = json["TexteClausules"];
-    medit.imgUrl = "http://app.equipes-rosaire.org/Img/"+json["Img"];
+    medit.imgUrl = "https://app.equipes-rosaire.org/Img/"+json["Img"];
     medit.audioUrl = json["Audio"];
     medit.videoUrl = json["Video"];
     return medit;
@@ -37,7 +37,7 @@ class Meditation {
 
 // on récupère la liste des méditations et on retourne un tableau Objet de type Méditation
   static Future<List<Meditation>> getMeditPhp() async {
-    var uri = Uri.parse("http://app.equipes-rosaire.org/json2.php");
+    var uri = Uri.parse("https://app.equipes-rosaire.org/json2.php");
     var response = await http.post(uri);
     var jsonMedit = jsonDecode(response.body);
     List<Meditation> meditations = [];

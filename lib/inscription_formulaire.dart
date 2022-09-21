@@ -32,7 +32,7 @@ class _UserLogState extends State<UserLog> {
     // on appel la requete serveur
 
     String urlCreation =
-        "http://app.equipes-rosaire.org/user2.php?Prenom=$uPrenom&Email=$uEmail&Ville=$uVille&Usernum=$uUsernum";
+        "https://app.equipes-rosaire.org/user2.php?Prenom=$uPrenom&Email=$uEmail&Ville=$uVille&Usernum=$uUsernum";
     print('ValidForm() urlCreation : ' + urlCreation);
     var uri = Uri.parse(urlCreation);
     var response = await http.post(uri);
