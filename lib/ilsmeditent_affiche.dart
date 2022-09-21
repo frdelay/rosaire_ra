@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '_param.dart';
+
 class IlsMeditent extends StatefulWidget {
   const IlsMeditent({Key? key}) : super(key: key);
 
@@ -19,7 +21,7 @@ class _IlsMeditentState extends State<IlsMeditent> {
   }
 
   getConnectPhp() async {
-    var uri = Uri.parse("http://app.equipes-rosaire.org/journaltri.php");
+    var uri = Uri.parse("http://app.equipes-rosaire.org/journaltri2.php");
     var response = await http.post(uri);
 
     var jsonConnexions = jsonDecode(response.body);
@@ -103,14 +105,17 @@ class _IlsMeditentState extends State<IlsMeditent> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: List<Widget>.generate(
-                              usersConnected.elementAt(index).values.first.length,
+                              usersConnected.elementAt(index).values.first.length - 1,
                               (index2) => Container(
-                                // color: Colors.green,
+                                color: colorTitle[usersConnected
+                                    .elementAt(index)
+                                    .values
+                                    .first['cat']],
                                 child: Text(usersConnected
                                     .elementAt(index)
                                     .values
-                                    .first[index2]
-                                    .toString()),
+                                    .first['$index2']
+                                    .toString(),),
                               ),
                             ),
                           ),
