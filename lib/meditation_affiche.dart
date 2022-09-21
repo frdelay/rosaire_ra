@@ -177,15 +177,16 @@ class _AffMeditState extends State<AffMedit> {
                             style: Theme.of(context).textTheme.bodyText1),
                       ),
                       const SizedBox(height: 20.0),
-                      const Divider(
+                      Divider(
                         height: 20,
                         thickness: 1,
-                        color: Color.fromARGB(220, 37, 183, 135),
+                        color: colorTitle[meditationdujour.code[0]],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset(
+                            // coloredIcon1[meditationdujour.code[0]]
                             'assets/ico1.png',
                             height: 30,
                             width: 30,
@@ -207,10 +208,10 @@ class _AffMeditState extends State<AffMedit> {
                                   .headline3)), //style: TextStyle(fontSize: 18)),
 
                       const SizedBox(height: 20.0),
-                      const Divider(
+                      Divider(
                         height: 20,
                         thickness: 1,
-                        color: Color.fromARGB(220, 37, 183, 135),
+                        color: colorTitle[meditationdujour.code[0]],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -241,12 +242,12 @@ class _AffMeditState extends State<AffMedit> {
                         padding: EdgeInsets.all(8.0),
                         child: SizedBox(height: 20.0),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Divider(
                           height: 20,
                           thickness: 1,
-                          color: Color.fromARGB(220, 37, 183, 135),
+                          color: colorTitle[meditationdujour.code[0]],
                         ),
                       ),
                       Padding(
@@ -292,7 +293,7 @@ class _AffMeditState extends State<AffMedit> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17),
                           border: Border.all(
-                            color: const Color.fromARGB(220, 37, 183, 135),
+                            color: colorTitle[meditationdujour.code[0]]!,
                             width: 2,
                           ),
                         ),
@@ -394,10 +395,10 @@ class _AffMeditState extends State<AffMedit> {
                         ],
                       )),
                       const SizedBox(height: 20.0),
-                      const Divider(
+                      Divider(
                         height: 20,
                         thickness: 1,
-                        color: Color.fromARGB(220, 37, 183, 135),
+                        color: colorTitle[meditationdujour.code[0]],
                       ),
                       /**/
                       const SizedBox(height: 20.0),
@@ -456,7 +457,7 @@ class _AffMeditState extends State<AffMedit> {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      backgroundColor: colorTitle[meditationdujour.code[0]],
                       elevation: 10,
                       minimumSize: const Size(45, 30))),
             ),
@@ -475,7 +476,7 @@ class _AffMeditState extends State<AffMedit> {
                     child: Text('Ils\nméditent', textAlign: TextAlign.center),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      backgroundColor: colorTitle[meditationdujour.code[0]],
                       elevation: 10,
                       minimumSize: const Size(60, 30))),
             ),
@@ -497,7 +498,7 @@ class _AffMeditState extends State<AffMedit> {
                         Text('Laisser\nun message', textAlign: TextAlign.center),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      backgroundColor: colorTitle[meditationdujour.code[0]],
                       elevation: 10,
                       minimumSize: const Size(50, 30))),
             ),
