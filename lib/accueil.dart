@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rosaire/site_affiche.dart';
 import 'ilsmeditent_affiche.dart';
 import 'inscription_formulaire.dart';
+import '_theme.dart';
 
 class Accueil extends StatelessWidget {
 String urlSite = "";
@@ -47,7 +48,18 @@ class _MyHomePageState extends State {
             ),
       body: Column(
         children: [
-          const Text("\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n"),
+          SizedBox(
+            height: 200,
+            /*child: const Text(
+              "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
+              style: Theme.of(context).textTheme.headline2?
+              )*/
+            child :Text(
+                        "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
+                        style: Theme.of(context).textTheme.headline5,
+                        textAlign: TextAlign.center,
+                      ),
+              ),
           SizedBox(
             height: 400,
             child: GridView.count(
@@ -61,31 +73,30 @@ class _MyHomePageState extends State {
                   // bouton d'affichage de la page Prière Quotidienne du site
                   //
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => AfficheSite("https://equipes-rosaire.org/pq"),
-                          //builder: (context) => AfficheSite_pq(),
                         ));
                   },
                   child: const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                    padding: EdgeInsets.all(20),
                     child: Text('Une prière quotidienne', textAlign: TextAlign.center),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      primary: Color(0xaaac7a10),
                       elevation: 10,
                       minimumSize: const Size(60, 30))),
-                    color: Colors.teal[100],
+                    color: Color(0xffac7a10),
                   ),
                   //
                   // bouton d'affichage de la page "Je veux prier un mystère"
                   //
                  Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -95,43 +106,42 @@ class _MyHomePageState extends State {
                         ));
                   },
                   child: const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                    padding: EdgeInsets.all(20),
                     child: Text('Je veux prier un mystère chaque jour', textAlign: TextAlign.center),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      primary: Color(0xaa1957CC),
                       elevation: 10,
-                      minimumSize: const Size(60, 30))),
-                    color: Colors.teal[200],
+                      minimumSize: const Size(30, 30))),
+                    color: Color(0xff1957CC),
                   ),
                   //
-                  // bouton d'affichage de la liste "Ils méditent"
+                  // bouton d'affichage de la liste "Rejoindre une équipe"
                   //
                   Container( child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => AfficheSite("https://equipes-rosaire.org/nous-rejoindre"),
-                              //builder: (context) => AfficheSite_pq(),
+                              builder: (context) => AfficheSite("https://equipes-rosaire.org/nr"),
                             ));
                       },
                       child: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                        child: Text('Rejoinde une équipe', textAlign: TextAlign.center),
+                        padding: EdgeInsets.all(20),
+                        child: Text('Rejoindre une équipe', textAlign: TextAlign.center),
                       ),
                       style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(220, 37, 183, 135),
+                          primary:  Color(0x2096143f),
                           elevation: 10,
-                          minimumSize: const Size(60, 30))),
-                    color: Colors.teal[100],
+                          minimumSize: const Size(30, 30))),
+                    color: Color(0xff96143f),
                   ),
 
                   //
                   // bouton d'affichage de la liste "Ils méditent"
                   //                  
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -141,14 +151,14 @@ class _MyHomePageState extends State {
                         ));
                   },
                   child: const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                    padding: EdgeInsets.all(20),
                     child: Text('Ils\nméditent', textAlign: TextAlign.center),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(220, 37, 183, 135),
+                      primary: const Color(0xff2E986E),
                       elevation: 10,
-                      minimumSize: const Size(60, 30))),
-                    color: Colors.teal[400],
+                      minimumSize: const Size(30, 30))),
+                    color: Color(0xaa2E986E),
                   ),
                 ]),
           ),

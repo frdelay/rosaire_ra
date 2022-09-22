@@ -1,6 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import '_param.dart';
 
 import 'meditation_requete.dart';
 
@@ -23,12 +24,12 @@ class LocalNotificationService {
   );
   final IOSNotificationDetails _iosNotificationDetails =
       const IOSNotificationDetails(
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true,
-          //badgeNumber: 5,
-          attachments: [],
-      );
+    presentAlert: true,
+    presentBadge: true,
+    presentSound: true,
+    //badgeNumber: 5,
+    attachments: [],
+  );
 
   LocalNotificationService._internal();
 
@@ -46,10 +47,10 @@ class LocalNotificationService {
 
     const InitializationSettings initializationSettings =
         InitializationSettings(
-            android: initializationSettingsAndroid,
-            iOS: initializationSettingsIOS,
-            macOS: null,
-        );
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
+      macOS: null,
+    );
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
@@ -60,8 +61,8 @@ class LocalNotificationService {
 
   void showNotif(int delay, int id) async {
     NotificationDetails platformChannelSpecifics = NotificationDetails(
-        android: _androidNotificationDetails,
-        iOS: _iosNotificationDetails,
+      android: _androidNotificationDetails,
+      iOS: _iosNotificationDetails,
     );
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
@@ -83,13 +84,14 @@ class LocalNotificationService {
     var time = tz.TZDateTime.from(date, tz.local);
 
     flutterLocalNotificationsPlugin.zonedSchedule(
-        id,
-        titre,
-        text,
-        time,
-        platformChannelSpecifics,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      id,
+      titre,
+      text,
+      time,
+      platformChannelSpecifics,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
@@ -99,31 +101,34 @@ class LocalNotificationService {
     DateTime dateInit = DateTime.now().add(const Duration(seconds: 10));
 
     // TODO: remove print below
-    print("##### meditationNumber: $meditationNumber #####");
+    print("accueil.dart Méditation du jour: $meditationNumber");
 
     const int notificationNumber = 15;
 
     for (int i = 1; i <= notificationNumber; i = i + 1) {
-      int processedMeditationNumber = meditationNumber  + i;
-      int selectedMeditationNumber = selectMeditationNumber(processedMeditationNumber);
-
-      // TODO: remove print below
-      print("##### selectedMeditationNumber: $selectedMeditationNumber #####");
+      int processedMeditationNumber = meditationNumber + i;
+      int selectedMeditationNumber =
+          selectMeditationNumber(processedMeditationNumber);
 
       Meditation meditationNotification = meditations[selectedMeditationNumber];
       String notificationTitle = meditationNotification.titre;
-
-      // DateTime notificationDate = dateInit.add(Duration(seconds: 5 * i));
+      String notificationCat = meditationNotification.code.substring(0,1);
 
       DateTime now = DateTime.now();
-      DateTime notificationDate = DateTime(now.year, now.month, now.day + i, 7, 0 ,0);
-      
+      DateTime notificationDate =
+          DateTime(now.year, now.month, now.day + i, 7, 0, 0);
+
       int notifId = int.parse('${now.year}${now.month}${now.day + i}');
 
-      LocalNotificationService().showNotifDate(notificationDate, "$notificationTitle \n$i / $notificationDate / $selectedMeditationNumber", "text: $notifId", notifId);
+      LocalNotificationService().showNotifDate(
+          notificationDate,
+          notificationTitle,
+          "text: $notifId jour :  ${now.day + i}  cat : $notificationCat",
+          notifId);
 
       // TODO: remove print below
-      print("accueil.dart / notif $i $notificationDate $notificationTitle $selectedMeditationNumber $notifId");
+      print(
+          "accueil.dart / notif $notifId $notificationTitle Nummedit : $selectedMeditationNumber  Jour : ${now.add(new Duration(days: i))} / ${jourFR[now.add(new Duration(days: i))]}  cat : $notificationCat");
     }
   }
 }

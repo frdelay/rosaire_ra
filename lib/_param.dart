@@ -41,11 +41,11 @@ const colorTitle = {
 };
 
 
-// const coloredIcon4 = {
-//   "J": 'assets/ico4J.png',
-//   "L": 'assets/ico4L.png',
-//   "D": 'assets/ico4D.png',
-//   "G": 'assets/ico4G.png',
+// const coloredIcon1 = {
+//   "J": 'assets/icoJ.png',
+//   "L": 'assets/ico1L.png',
+//   "D": 'assets/ico1D.png',
+//   "G": 'assets/ico1G.png',
 // };
 
 // const coloredIcon2 = {
@@ -53,6 +53,20 @@ const colorTitle = {
 //   "L": 'assets/ico2L.png',
 //   "D": 'assets/ico2D.png',
 //   "G": 'assets/ico2G.png',
+// };
+
+// const coloredIcon3 = {
+//   "J": 'assets/ico3J.png',
+//   "L": 'assets/ico3L.png',
+//   "D": 'assets/ico3D.png',
+//   "G": 'assets/ico3G.png',
+// };
+
+// const coloredIcon4 = {
+//   "J": 'assets/ico4J.png',
+//   "L": 'assets/ico4L.png',
+//   "D": 'assets/ico4D.png',
+//   "G": 'assets/ico4G.png',
 // };
 
 

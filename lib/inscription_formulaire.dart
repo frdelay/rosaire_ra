@@ -12,13 +12,10 @@ class UserLog extends StatefulWidget {
 
 class _UserLogState extends State<UserLog> {
   String uPrenom = "";
-
   String uEmail = "";
-
   String uVille = "";
-
   String uUsernum = "";
-
+  String uEkipnum = "";
   late GlobalKey<FormState> _formKey;
 
   @override
@@ -33,7 +30,7 @@ class _UserLogState extends State<UserLog> {
     // on appel la requete serveur
 
     String urlCreation =
-        "https://app.equipes-rosaire.org/user2.php?Prenom=$uPrenom&Email=$uEmail&Ville=$uVille&Usernum=$uUsernum";
+        "https://app.equipes-rosaire.org/user2.php?Prenom=$uPrenom&Email=$uEmail&Ville=$uVille&Usernum=$uUsernum&Ekipnum=$uEkipnum";
     print('ValidForm() urlCreation : ' + urlCreation);
     var uri = Uri.parse(urlCreation);
     var response = await http.post(uri);
@@ -82,6 +79,9 @@ class _UserLogState extends State<UserLog> {
               key: _formKey,
               child: Column(
                 children: [
+                  //
+                  // SAISIE DU PRENOM
+                  //
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextFormField(
@@ -117,6 +117,9 @@ class _UserLogState extends State<UserLog> {
                         )
                       ),
                   ),
+                  //
+                  // SAISIE DE L'EMAIL
+                  //
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextFormField(/*
@@ -153,6 +156,9 @@ class _UserLogState extends State<UserLog> {
                         ),
                         style: Theme.of(context).textTheme.bodyText2),
                   ),
+                  //
+                  // SAISIE DE LA VILLE
+                  //                  
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: TextFormField(
@@ -185,6 +191,9 @@ class _UserLogState extends State<UserLog> {
                       ),
                     ),
                   ),
+                  //
+                  // SAISIE DU NUMERO D'EQUIPIER
+                  //                  
                   Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: TextFormField(
@@ -206,6 +215,36 @@ class _UserLogState extends State<UserLog> {
                               color: Color.fromARGB(255, 129, 135, 135),
                               fontStyle: FontStyle.italic),
                           labelText: 'Numéro d\'équipier',
+                          labelStyle: TextStyle(color: Color(0xFF3E938A)),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFF3E938A),
+                              width: 2,
+                            ),
+                          ),
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(15, 10, 20, 24),
+                        ),
+                      )),
+                  //
+                  // SAISIE DU NUMERO D'EQUIPE
+                  //                  
+                  Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: TextFormField(
+
+                        onChanged: (text) {
+                          print('SaisieNuméroEquipe : $text');
+                          uEkipnum = text;
+                        },
+                        keyboardType:TextInputType.number,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Saisir votre numéro d\'équipe si vous le connaissez',
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 129, 135, 135),
+                              fontStyle: FontStyle.italic),
+                          labelText: 'Numéro d\'équipe',
                           labelStyle: TextStyle(color: Color(0xFF3E938A)),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
