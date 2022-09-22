@@ -28,20 +28,43 @@ flutter:
   assets :
     - assets/EdR_icon.png
     - assets/EdR_splash.png
-    - assets/ico1.png
-    - assets/ico2.png
-    - assets/ico3.png
-    - assets/ico4.png
-    - assets/ico5.png
-    - assets/ico6.png
-    - assets/ico7.png
     - assets/EDR-logo-long.png
+
+    - assets/ico1-D.png
+    - assets/ico2-D.png
+    - assets/ico4-D.png
+    - assets/ico5-D.png
+    - assets/ico6-D.png
+    - assets/ico7-D.png
+
+    - assets/ico1-L.png
+    - assets/ico2-L.png
+    - assets/ico4-L.png
+    - assets/ico5-L.png
+    - assets/ico6-L.png
+    - assets/ico7-L.png
+
+    - assets/ico1-J.png
+    - assets/ico2-J.png
+    - assets/ico4-J.png
+    - assets/ico5-J.png
+    - assets/ico6-J.png
+    - assets/ico7-J.png
+
+    - assets/ico1-G.png
+    - assets/ico2-G.png
+    - assets/ico4-G.png
+    - assets/ico5-G.png
+    - assets/ico6-G.png
+    - assets/ico7-G.png
+
+
+
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.4
-  flutter_launcher_icons: ^0.9.2
 
 flutter_icons:
   image_path: "assets/EdR_icon.png"

@@ -45,7 +45,7 @@ class _IlsMeditentState extends State<IlsMeditent> {
               leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back,
-                    color: Colors.deepPurpleAccent,
+                    color: Colors.black,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -68,7 +68,7 @@ class _IlsMeditentState extends State<IlsMeditent> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 15.0),
                   child: Text("ils méditent",
-                      style: Theme.of(context).textTheme.headline1),
+                      style: Theme.of(context).textTheme.headline4),
                 ),
 
                 // '...' it's spread operator (https://www.geeksforgeeks.org/dart-spread-operator/)

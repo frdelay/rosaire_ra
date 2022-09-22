@@ -85,7 +85,6 @@ class _AffMeditState extends State<AffMedit> {
 
     print("playeraudio : ${meditationdujour.audioUrl}");
     await playeraudio.setUrl(meditationdujour.audioUrl);
-
   }
 
   @override
@@ -116,12 +115,14 @@ class _AffMeditState extends State<AffMedit> {
                     children: [
                       Text(
                         "Bonjour $prenom !",
-                        style: Theme.of(context).textTheme.headline2?.merge(
-                            TextStyle(color: colorTitle[meditationdujour.code[0]])),
+                        style: Theme.of(context).textTheme.headline4?.merge(
+                            TextStyle(
+                                color: colorTitle[meditationdujour.code[0]])),
                         textAlign: TextAlign.center,
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+                        padding:
+                            const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
@@ -137,8 +138,8 @@ class _AffMeditState extends State<AffMedit> {
                               TextSpan(
                                   text:
                                       "mystère ${famille[meditationdujour.code[0]]}\n",
-                                  style:
-                                      const TextStyle(fontWeight: FontWeight.bold))
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold))
                             ],
                           ),
                         ),
@@ -150,16 +151,17 @@ class _AffMeditState extends State<AffMedit> {
                                 const BorderRadius.all(Radius.circular(0.90))),
                         child: Column(children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 4.0),
+                            padding:
+                                const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 4.0),
                             child: Container(
                                 width: double.infinity,
                                 child: Text(meditationdujour.titre,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline1
-                                        ?.merge(
-                                            const TextStyle(color: Colors.white)))),
+                                        .headline5
+                                        ?.merge(const TextStyle(
+                                            color: Colors.white)))),
                           ),
                           Container(
                               width: double.infinity,
@@ -168,8 +170,8 @@ class _AffMeditState extends State<AffMedit> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline3
-                                      ?.merge(
-                                          const TextStyle(color: Colors.white)))),
+                                      ?.merge(const TextStyle(
+                                          color: Colors.white)))),
                         ]),
                       ),
                       const SizedBox(height: 20.0),
@@ -187,8 +189,8 @@ class _AffMeditState extends State<AffMedit> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset(
-                            // coloredIcon1[meditationdujour.code[0]]
-                            'assets/ico1.png',
+                            coloredIcon1[meditationdujour.code[0]]!,
+                            // 'assets/ico1.png',
                             height: 30,
                             width: 30,
                           ),
@@ -218,7 +220,7 @@ class _AffMeditState extends State<AffMedit> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Image.asset(
-                            'assets/ico2.png',
+                            coloredIcon2[meditationdujour.code[0]]!,
                             height: 30,
                             width: 30,
                           ),
@@ -267,13 +269,15 @@ class _AffMeditState extends State<AffMedit> {
                                     padding: const EdgeInsets.fromLTRB(
                                         0.0, 0.0, 5.0, 0.0),
                                     child: Image.asset(
-                                      'assets/ico5.png',
+                                      coloredIcon5[meditationdujour.code[0]]!,
                                       height: 30,
                                       width: 30,
                                     ),
                                   ),
                                   Text("Fruit du mystère",
-                                      style: Theme.of(context).textTheme.headline4),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline4),
                                 ],
                               ),
                               const SizedBox(height: 10.0),
@@ -282,7 +286,9 @@ class _AffMeditState extends State<AffMedit> {
                                   padding: const EdgeInsets.fromLTRB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Text(meditationdujour.texteFruit,
-                                      style: Theme.of(context).textTheme.headline3),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline3),
                                 ),
                               ),
                             ],
@@ -305,16 +311,17 @@ class _AffMeditState extends State<AffMedit> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                                  padding: const EdgeInsets.fromLTRB(
+                                      0.0, 0.0, 5.0, 0.0),
                                   child: Image.asset(
-                                    'assets/ico4.png',
+                                    coloredIcon4[meditationdujour.code[0]]!,
                                     height: 30,
                                     width: 30,
                                   ),
                                 ),
                                 Text("Les clausules",
-                                    style: Theme.of(context).textTheme.headline4),
+                                    style:
+                                        Theme.of(context).textTheme.headline4),
                               ],
                             ),
                             const SizedBox(height: 20.0),
@@ -345,15 +352,15 @@ class _AffMeditState extends State<AffMedit> {
                               padding:
                                   const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
                               child: Image.asset(
-                                'assets/ico6.png',
+                                coloredIcon6[meditationdujour.code[0]]!,
                                 height: 30,
                                 width: 30,
                               ),
                             ),
                             Container(
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(
+                                    0.0, 0.0, 5.0, 0.0),
                                 child: Text(
                                   "Audio",
                                   style: Theme.of(context).textTheme.headline4,
@@ -393,6 +400,19 @@ class _AffMeditState extends State<AffMedit> {
                                     });
                                   },
                                 ),
+                          IconButton(
+                            icon: const Icon(Icons.stop),
+                            tooltip: 'stop',
+                            onPressed: () {
+                              print("stop");
+                              playeraudio.dispose();
+                              //playeraudio.stop();
+                              setState(() {
+                                isPlaying = false;
+                              });
+                            },
+                          ),
+                          Text(meditationdujour.audioTitre)
                         ],
                       )),
                       const SizedBox(height: 20.0),
@@ -407,9 +427,10 @@ class _AffMeditState extends State<AffMedit> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                            padding:
+                                const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
                             child: Image.asset(
-                              'assets/ico7.png',
+                              coloredIcon7[meditationdujour.code[0]]!,
                               height: 30,
                               width: 30,
                             ),
@@ -440,69 +461,70 @@ class _AffMeditState extends State<AffMedit> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 3 - 10,
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AfficheSite("https://equipes-rosaire.org"),
-                        ));
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                    child: Text(
-                      'Vers\nle site',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: colorTitle[meditationdujour.code[0]],
-                      elevation: 10,
-                      minimumSize: const Size(45, 30))),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 3 - 10,
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const IlsMeditent(),
-                        ));
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                    child: Text('Ils\nméditent', textAlign: TextAlign.center),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: colorTitle[meditationdujour.code[0]],
-                      elevation: 10,
-                      minimumSize: const Size(60, 30))),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 3 - 10,
-
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              EnvMsg(widget.login, prenom, email),
-                        ));
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                    child:
-                        Text('Laisser\nun message', textAlign: TextAlign.center),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: colorTitle[meditationdujour.code[0]],
-                      elevation: 10,
-                      minimumSize: const Size(50, 30))),
-            ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3 - 10,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AfficheSite(
+                                  "https://equipes-rosaire.org/accueil-appli"),
+                            ));
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                        child: Text(
+                          'Vers\nle site',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: colorTitle[meditationdujour.code[0]],
+                          elevation: 10,
+                          minimumSize: const Size(45, 30))),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3 - 10,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const IlsMeditent(),
+                            ));
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                        child:
+                            Text('Ils\nméditent', textAlign: TextAlign.center),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: colorTitle[meditationdujour.code[0]],
+                          elevation: 10,
+                          minimumSize: const Size(60, 30))),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3 - 10,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EnvMsg(widget.login, prenom, email),
+                            ));
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
+                        child: Text('Laisser\nun message',
+                            textAlign: TextAlign.center),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: colorTitle[meditationdujour.code[0]],
+                          elevation: 10,
+                          minimumSize: const Size(50, 30))),
+                ),
               ],
             ),
           ),

@@ -42,18 +42,19 @@ class EnvMsg extends StatelessWidget {
           leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
-                color: Colors.deepPurpleAccent,
+                color: Colors.black,
               ),
               onPressed: () {
                 Navigator.pop(context);
               }),
-          toolbarHeight: 80,
+          toolbarHeight: 50,
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: Center(
             child: Container(
               height: 80,
               child: Image.asset(
-                'assets/EdR_splash.png',
+                'assets/EDR-logo-long.png',
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -64,28 +65,34 @@ class EnvMsg extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text("Bonjour $aPrenom, \nvous aimez les méditations du Rosaire, \nvous souhaitez rejoindre une équipe près de chez vous\nlaissez nous votre numéro de téléphone\nnous vous répondrons dans les meilleurs délais."),
-                Text("Votre email : $aEmail\n"),
+                Text(
+                    "Bonjour $aPrenom, \n\nVous aimez les méditations du Rosaire, \nvous souhaitez rejoindre une équipe près de chez vous ? \n\nLaissez nous votre numéro de téléphone\nnous vous répondrons dans les meilleurs délais.\n\nVous pouvez aussi nous demander \nla suppression de vos données personnelles de cette application."),
+                Text(
+                  "\n\nVotre email : $aEmail\n",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 Container(
                   child: TextField(
-                    style: TextStyle (height:1.0),
-                    minLines: 3,
-                    maxLines: 10,
+                    style: TextStyle(height: 1.0),
+                    minLines: 5,
+                    maxLines: 15,
                     keyboardType: TextInputType.multiline,
                     onChanged: (text) {
                       print('TexteMessage : $text');
                       TexteMessage = text;
                     },
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Saisir votre message',),
+                      border: OutlineInputBorder(),
+                      hintText: 'Saisir votre message',
+                    ),
                   ),
                 ),
+                SizedBox(height: 20.0),
                 TextButton(
                   child: Text('Envoyer votre message'),
                   style: TextButton.styleFrom(
                     primary: Colors.white,
-                    backgroundColor: Colors.teal,
+                    backgroundColor: Colors.black54,
                     onSurface: Colors.grey,
                     textStyle: TextStyle(
                         color: Colors.black,

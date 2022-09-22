@@ -83,8 +83,8 @@ class _MyHomePageState extends State {
                         ));
                   },
                   child: const Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Text('Une prière quotidienne', textAlign: TextAlign.center),
+                    padding: EdgeInsets.all(5),
+                    child: Text('Une prière \nquotidienne', textAlign: TextAlign.center),
                   ),
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xaaac7a10),

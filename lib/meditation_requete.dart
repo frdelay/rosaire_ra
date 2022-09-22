@@ -13,6 +13,7 @@ class Meditation {
   String texteClausules = "";
   String imgUrl = "";
   String audioUrl = "";
+  String audioTitre = "";
   String videoUrl = "";
 
 
@@ -31,6 +32,7 @@ class Meditation {
     medit.texteClausules = json["TexteClausules"];
     medit.imgUrl = "https://app.equipes-rosaire.org/Img/"+json["Img"];
     medit.audioUrl = json["Audio"];
+    medit.audioTitre=json["TitreAudio"];
     medit.videoUrl = json["Video"];
     return medit;
   }

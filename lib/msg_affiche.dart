@@ -19,19 +19,19 @@ class ArMsg extends StatelessWidget {
           leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
-                color: Colors.deepPurpleAccent,
+                color: Colors.black,
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => AffMedit(bLogin)));
+                Navigator.pop(context);
               }),
-          toolbarHeight: 80,
+          toolbarHeight: 50,
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: Center(
             child: Container(
               height: 80,
               child: Image.asset(
-                'assets/EdR_splash.png',
+                'assets/EDR-logo-long.png',
                 fit: BoxFit.fitWidth,
               ),
             ),

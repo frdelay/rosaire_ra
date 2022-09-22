@@ -41,34 +41,50 @@ const colorTitle = {
 };
 
 
-// const coloredIcon1 = {
-//   "J": 'assets/icoJ.png',
-//   "L": 'assets/ico1L.png',
-//   "D": 'assets/ico1D.png',
-//   "G": 'assets/ico1G.png',
-// };
+const coloredIcon1 = {
+  "J": 'assets/ico1-J.png',
+  "L": 'assets/ico1-L.png',
+  "D": 'assets/ico1-D.png',
+  "G": 'assets/ico1-G.png',
+};
 
-// const coloredIcon2 = {
-//   "J": 'assets/ico2J.png',
-//   "L": 'assets/ico2L.png',
-//   "D": 'assets/ico2D.png',
-//   "G": 'assets/ico2G.png',
-// };
+const coloredIcon2 = {
+  "J": 'assets/ico2-J.png',
+  "L": 'assets/ico2-L.png',
+  "D": 'assets/ico2-D.png',
+  "G": 'assets/ico2-G.png',
+};
 
-// const coloredIcon3 = {
-//   "J": 'assets/ico3J.png',
-//   "L": 'assets/ico3L.png',
-//   "D": 'assets/ico3D.png',
-//   "G": 'assets/ico3G.png',
-// };
+const coloredIcon4 = {
+  "J": 'assets/ico4-J.png',
+  "L": 'assets/ico4-L.png',
+  "D": 'assets/ico4-D.png',
+  "G": 'assets/ico4-G.png',
+};
 
-// const coloredIcon4 = {
-//   "J": 'assets/ico4J.png',
-//   "L": 'assets/ico4L.png',
-//   "D": 'assets/ico4D.png',
-//   "G": 'assets/ico4G.png',
-// };
 
+const coloredIcon5 = {
+  "J": 'assets/ico5-J.png',
+  "L": 'assets/ico5-L.png',
+  "D": 'assets/ico5-D.png',
+  "G": 'assets/ico5-G.png',
+};
+
+
+const coloredIcon6 = {
+  "J": 'assets/ico6-J.png',
+  "L": 'assets/ico6-L.png',
+  "D": 'assets/ico6-D.png',
+  "G": 'assets/ico6-G.png',
+};
+
+
+const coloredIcon7 = {
+  "J": 'assets/ico7-J.png',
+  "L": 'assets/ico7-L.png',
+  "D": 'assets/ico7-D.png',
+  "G": 'assets/ico7-G.png',
+};
 
 const famille = {
   "J": "joyeux",

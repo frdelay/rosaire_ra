@@ -262,7 +262,7 @@ class _UserLogState extends State<UserLog> {
                       child: Text('Créer mon compte'),
                       style: TextButton.styleFrom(
                         primary: Colors.white,
-                        backgroundColor: Colors.teal,
+                        backgroundColor: Colors.black54,
                         onSurface: Colors.grey,
                         textStyle: TextStyle(
                             color: Colors.black,

@@ -26,7 +26,7 @@ class _AfficheSiteState extends State<AfficheSite> {
               leading: IconButton(
                   icon: Icon(
                     Icons.arrow_back,
-                    color: Colors.deepPurpleAccent,
+                    color: Colors.black,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
