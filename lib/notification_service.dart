@@ -2,6 +2,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import '_param.dart';
+import 'package:intl/intl.dart';
 
 import 'meditation_requete.dart';
 
@@ -120,21 +121,32 @@ class LocalNotificationService {
 
       int notifId = int.parse('${notificationDate.year}${notificationDate.month}${notificationDate.day}');
 
+      String nomJourNotif = DateFormat.EEEE().format(notificationDate);
+      String numeroJourNotif = DateFormat.d().format(notificationDate);
+      int moisNotif = int.parse(DateFormat.M().format(notificationDate)) - 1;
+      String anneeNotif = DateFormat.y().format(notificationDate);
+
+
       LocalNotificationService().showNotifDate(
           notificationDate,
           notificationTitle,
-          "text: $notifId jour :  ${now.day + i}  prenom : $prenom cat : ${famille[notificationCat]}",
+          "\nBonjour $prenom, "
+          "Aujourd'hui, ${jourFR[nomJourNotif]} $numeroJourNotif ${moisFR[moisNotif]} $anneeNotif, "
+          "vous méditez un mystère ${famille[notificationCat]}",
           notifId);
+
+
+
+
+
 
       // TODO: remove print below
       print(
-          "accueil.dart / notif "+
-          "$notifId $notificationTitle "
-          "Nummedit : $selectedMeditationNumber   "
-          "prenom : $prenom cat : ${famille[notificationCat]} "
-          "Jour : ${now.add(new Duration(days: i))} / ${jourFR[now.add(new Duration(days: i))]}  "
-          "cat : ${famille[notificationCat]}"
-          "texte :  Aujourd'hui, ${jourFR[dayOfWeek]} $day ${moisFR[mois]}  $year, \nvous méditez un ",
+          "####   accueil.dart / notif  ####" 
+          "\n$notificationTitle ($selectedMeditationNumber)"
+          "\nBonjour $prenom, "
+          "Aujourd'hui, ${jourFR[nomJourNotif]} $numeroJourNotif ${moisFR[moisNotif]} $anneeNotif, "
+          "vous méditez un mystère ${famille[notificationCat]}"
 );
     }
   }
