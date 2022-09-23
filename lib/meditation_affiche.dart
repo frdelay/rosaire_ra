@@ -43,11 +43,24 @@ class _AffMeditState extends State<AffMedit> {
 
   @override
   void initState() {
+    actualisationJournaliere();
     getUserPhp(widget.login);
     localNotificationService = LocalNotificationService();
     localNotificationService.init();
     super.initState();
   }
+
+actualisationJournaliere() async{
+  while (true) {
+    DateTime time1 = DateTime.now();
+    await Future<dynamic>.delayed(const Duration(minutes: 60));
+     DateTime time2 = DateTime.now();
+
+    if(time1.day != time2.day){
+      getUserPhp(widget.login);
+    }
+}
+}
 
   // on récupère les données de l'utilisateur depuis la shared préference Login
   Future<void> getUserPhp(String loginId) async {
@@ -452,7 +465,8 @@ class _AffMeditState extends State<AffMedit> {
                             initialUrl: meditationdujour.videoUrl,
                             javascriptMode: JavascriptMode.unrestricted,
                           ),
-                          height: 200),
+                          //height: 200
+                          ),
                     ],
                   ),
                 ),

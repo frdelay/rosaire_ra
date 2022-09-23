@@ -50,10 +50,7 @@ class _MyHomePageState extends State {
         children: [
           SizedBox(
             height: 200,
-            /*child: const Text(
-              "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
-              style: Theme.of(context).textTheme.headline2?
-              )*/
+
             child :Text(
                         "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
                         style: Theme.of(context).textTheme.headline5,
@@ -61,7 +58,8 @@ class _MyHomePageState extends State {
                       ),
               ),
           SizedBox(
-            height: 400,
+            //height: 1000,
+            height :MediaQuery.of(context).size.height/100*70,
             child: GridView.count(
                 primary: false,
                 padding: const EdgeInsets.all(20),
@@ -82,9 +80,15 @@ class _MyHomePageState extends State {
                           builder: (context) => AfficheSite("https://equipes-rosaire.org/pq"),
                         ));
                   },
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.all(5),
-                    child: Text('Une prière \nquotidienne', textAlign: TextAlign.center),
+                    child: 
+                    Text(
+                      'Une prière \nquotidienne', 
+                      textAlign: TextAlign.center,
+                      style:TextStyle(
+                        fontSize: MediaQuery.of(context).size.height/100*5
+                        )),
                   ),
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xaaac7a10),
@@ -126,9 +130,15 @@ class _MyHomePageState extends State {
                               builder: (context) => AfficheSite("https://equipes-rosaire.org/nr"),
                             ));
                       },
-                      child: const Padding(
+                      child:  Padding(
                         padding: EdgeInsets.all(20),
-                        child: Text('Rejoindre une équipe', textAlign: TextAlign.center),
+                        child: 
+                                          Text(
+                      'Rejoindre une équipe', 
+                      textAlign: TextAlign.center,
+                      style:TextStyle(
+                        fontSize: MediaQuery.of(context).size.height/100*5
+                        )),
                       ),
                       style: ElevatedButton.styleFrom(
                           primary:  Color(0x2096143f),
