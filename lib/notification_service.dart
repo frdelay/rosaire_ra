@@ -96,7 +96,7 @@ class LocalNotificationService {
   }
 
   /// Generates notifications for the next 30 days.
-  generate30Notifications({required int meditationNumber}) async {
+  generate30Notifications({required int meditationNumber, required String prenom }) async {
     List<Meditation> meditations = await Meditation.getMeditPhp();
     DateTime dateInit = DateTime.now().add(const Duration(seconds: 10));
 
@@ -118,17 +118,24 @@ class LocalNotificationService {
       DateTime notificationDate =
           DateTime(now.year, now.month, now.day + i, 7, 0, 0);
 
-      int notifId = int.parse('${now.year}${now.month}${now.day + i}');
+      int notifId = int.parse('${notificationDate.year}${notificationDate.month}${notificationDate.day}');
 
       LocalNotificationService().showNotifDate(
           notificationDate,
           notificationTitle,
-          "text: $notifId jour :  ${now.day + i}  cat : $notificationCat",
+          "text: $notifId jour :  ${now.day + i}  prenom : $prenom cat : ${famille[notificationCat]}",
           notifId);
 
       // TODO: remove print below
       print(
-          "accueil.dart / notif $notifId $notificationTitle Nummedit : $selectedMeditationNumber  Jour : ${now.add(new Duration(days: i))} / ${jourFR[now.add(new Duration(days: i))]}  cat : $notificationCat");
+          "accueil.dart / notif "+
+          "$notifId $notificationTitle "
+          "Nummedit : $selectedMeditationNumber   "
+          "prenom : $prenom cat : ${famille[notificationCat]} "
+          "Jour : ${now.add(new Duration(days: i))} / ${jourFR[now.add(new Duration(days: i))]}  "
+          "cat : ${famille[notificationCat]}"
+          "texte :  Aujourd'hui, ${jourFR[dayOfWeek]} $day ${moisFR[mois]}  $year, \nvous méditez un ",
+);
     }
   }
 }

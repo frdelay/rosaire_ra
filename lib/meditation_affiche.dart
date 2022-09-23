@@ -10,7 +10,6 @@ import 'msg_formulaire.dart';
 import 'ilsmeditent_affiche.dart';
 import 'meditation_requete.dart';
 import '_param.dart';
-import '_theme.dart';
 
 import 'notification_service.dart';
 
@@ -93,6 +92,7 @@ actualisationJournaliere() async{
 
       localNotificationService.generate30Notifications(
         meditationNumber: nummedit,
+        prenom : prenom
       );
     });
 
@@ -352,12 +352,10 @@ actualisationJournaliere() async{
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20.0),
-                      const SizedBox(height: 20.0),
                       if (meditationdujour.imgUrl != "")
                         Image(image: NetworkImage(meditationdujour.imgUrl)),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(5.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -384,8 +382,7 @@ actualisationJournaliere() async{
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20.0),
-                      /**/
+                      // SizedBox(height: MediaQuery.of(context).size.height/100*2),
                       Container(
                           //Audio
                           child: Row(
@@ -465,7 +462,7 @@ actualisationJournaliere() async{
                             initialUrl: meditationdujour.videoUrl,
                             javascriptMode: JavascriptMode.unrestricted,
                           ),
-                          //height: 200
+                          height: MediaQuery.of(context).size.height/100*30,
                           ),
                     ],
                   ),

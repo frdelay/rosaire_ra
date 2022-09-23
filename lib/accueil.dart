@@ -87,7 +87,7 @@ class _MyHomePageState extends State {
                       'Une prière \nquotidienne', 
                       textAlign: TextAlign.center,
                       style:TextStyle(
-                        fontSize: MediaQuery.of(context).size.height/100*5
+                        fontSize: MediaQuery.of(context).size.height/100*2
                         )),
                   ),
                   style: ElevatedButton.styleFrom(
