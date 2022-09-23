@@ -172,7 +172,7 @@ actualisationJournaliere() async{
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline5
+                                        .headline1
                                         ?.merge(const TextStyle(
                                             color: Colors.white)))),
                           ),
