@@ -43,39 +43,45 @@ class _AffMeditState extends State<AffMedit> {
   @override
   void initState() {
     actualisationJournaliere();
-    getUserPhp(widget.login);
+    getUserPhp(widget.login,0);
     localNotificationService = LocalNotificationService();
     localNotificationService.init();
     super.initState();
   }
 
-actualisationJournaliere() async{
-  while (true) {
-    DateTime time1 = DateTime.now();
-    await Future<dynamic>.delayed(const Duration(minutes: 60));
-     DateTime time2 = DateTime.now();
+  actualisationJournaliere() async {
+    while (true) {
+      DateTime time1 = DateTime(now.year, now.month, now.day);
 
-    if(time1.day != time2.day){
-      getUserPhp(widget.login);
+      /* verif formule de calcul
+      DateTime time3 = DateTime(2022, 9, 24);
+      int difJourstest = time3.difference(time1).inDays;
+      print("time1 $time1 time3 $time3 dif $difJourstest");
+      */
+
+      await Future<dynamic>.delayed(const Duration(minutes: 60));
+      DateTime time2 = DateTime(now.year, now.month, now.day);
+
+      if (time1.day != time2.day) {
+        int difJours = time2.difference(time1).inDays;
+        getUserPhp(widget.login,difJours);
+      }
     }
-}
-}
+  }
 
   // on récupère les données de l'utilisateur depuis la shared préference Login
-  Future<void> getUserPhp(String loginId) async {
-    //print("medit.dart : uri = https://app.equipes-rosaire.org/user2.php?Login=$loginId");
+  Future<void> getUserPhp(String loginId, int difDate) async {
     var uri =
         Uri.parse("https://app.equipes-rosaire.org/user2.php?Login=$loginId");
     var response = await http.post(uri);
     var jsonMedit = jsonDecode(response.body);
-    //print('getUserPhp() ££££££££££££££ Response body: ${response.body}');
     setState(() {
       login = jsonMedit['Login'];
       prenom = jsonMedit['Prenom'];
       email = jsonMedit['Email'];
       ville = jsonMedit['Ville'];
       usernum = jsonMedit['Usernum'];
-      nummedit = int.parse(jsonMedit['Nummedit']) - 1;
+      nummedit = int.parse(jsonMedit['Nummedit']) - 1+ difDate;
     });
     await getMeditations();
 
@@ -91,9 +97,7 @@ actualisationJournaliere() async{
       meditationdujour = meditations[nummedit];
 
       localNotificationService.generate30Notifications(
-        meditationNumber: nummedit,
-        prenom : prenom
-      );
+          meditationNumber: nummedit, prenom: prenom);
     });
 
     print("playeraudio : ${meditationdujour.audioUrl}");
@@ -457,13 +461,13 @@ actualisationJournaliere() async{
                       ),
                       const SizedBox(height: 20.0),
                       Container(
-                          //child: Text(videoUrl, style: TextStyle(fontSize: 14)),
-                          child: WebView(
-                            initialUrl: meditationdujour.videoUrl,
-                            javascriptMode: JavascriptMode.unrestricted,
-                          ),
-                          height: MediaQuery.of(context).size.height/100*30,
-                          ),
+                        //child: Text(videoUrl, style: TextStyle(fontSize: 14)),
+                        child: WebView(
+                          initialUrl: meditationdujour.videoUrl,
+                          javascriptMode: JavascriptMode.unrestricted,
+                        ),
+                        height: MediaQuery.of(context).size.height / 100 * 30,
+                      ),
                     ],
                   ),
                 ),
