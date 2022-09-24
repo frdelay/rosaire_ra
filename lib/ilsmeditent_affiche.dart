@@ -65,52 +65,55 @@ class _IlsMeditentState extends State<IlsMeditent> {
             ),
             body: SingleChildScrollView(
               child: Column(children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          color: colorTitle["J"],
-                          child: 
-                          Text('MYSTERES\nJOYEUX', 
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white)
-                          )
-                        ),
-                      ),
-                    ),
 
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Container(
-                          color: colorTitle["L"],
-                          child: 
-                          Text('MYSTERES\nLUMINEUX', 
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white)
-                          )
-                        ),
-                      ),
-                    ),
-                    Padding(
+                     Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 15.0),
                       child: Text("ils méditent",
                           style: Theme.of(context).textTheme.headline4),
                     ),
 
+            Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Container(
+                          color: colorTitle["J"],
+                          child: 
+                          Text('mystères joyeux', 
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)
+                          )
+                        ),
+                      ),
+                    ),
+
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: Container(
+                          color: colorTitle["L"],
+                          child: 
+                          Text('mystères lumineux', 
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)
+                          )
+                        ),
+                      ),
+                    ),
+
+
 Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(0),
                         child: Container(
                           color: colorTitle["G"],
                           child: 
-                          Text('MYSTERES\nGLORIEUX', 
+                          Text('mystères glorieux', 
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -121,11 +124,11 @@ Expanded(
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(0),
                         child: Container(
                           color: colorTitle["D"],
                           child: 
-                          Text('MYSTERES\nDOULOUREUX', 
+                          Text('mystères douloureux', 
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                                       fontWeight: FontWeight.bold,

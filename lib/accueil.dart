@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:rosaire/site_affiche.dart';
 import 'ilsmeditent_affiche.dart';
 import 'inscription_formulaire.dart';
-import '_theme.dart';
 
 class Accueil extends StatelessWidget {
-String urlSite = "";
+  String urlSite = "";
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,35 +30,33 @@ class _MyHomePageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            appBar: AppBar(
-        
-              toolbarHeight: 50,
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
-              title: Center(
-                child: Container(
-                  height: 80,
-                  child: Image.asset(
-                    'assets/EDR-logo-long.png',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-              ),
+      appBar: AppBar(
+        toolbarHeight: 50,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        title: Center(
+          child: Container(
+            height: 80,
+            child: Image.asset(
+              'assets/EDR-logo-long.png',
+              fit: BoxFit.fitWidth,
             ),
+          ),
+        ),
+      ),
       body: Column(
         children: [
           SizedBox(
-            height: 200,
-
-            child :Text(
-                        "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
-                        style: Theme.of(context).textTheme.headline5,
-                        textAlign: TextAlign.center,
-                      ),
-              ),
+            height: MediaQuery.of(context).size.height / 100 * 20,
+            child: Text(
+              "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
+              style: Theme.of(context).textTheme.headline5,
+              textAlign: TextAlign.center,
+            ),
+          ),
           SizedBox(
             //height: 1000,
-            height :MediaQuery.of(context).size.height/100*70,
+            height: MediaQuery.of(context).size.height / 100 * 60,
             child: GridView.count(
                 primary: false,
                 padding: const EdgeInsets.all(20),
@@ -73,102 +70,114 @@ class _MyHomePageState extends State {
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AfficheSite("https://equipes-rosaire.org/pq"),
-                        ));
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: 
-                    Text(
-                      'Une prière \nquotidienne', 
-                      textAlign: TextAlign.center,
-                      style:TextStyle(
-                        fontSize: MediaQuery.of(context).size.height/100*2
-                        )),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Color(0xaaac7a10),
-                      elevation: 10,
-                      minimumSize: const Size(60, 30))),
-                    color: Color(0xffac7a10),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AfficheSite(
+                                    "https://equipes-rosaire.org/pq"),
+                              ));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Text('Une prière chaque jour',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.height /
+                                      100 *
+                                      2.5)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xffac7a10),
+                            elevation: 10,
+                            minimumSize: const Size(30, 30))),
+                    color: Color(0x80ac7a10),
                   ),
                   //
                   // bouton d'affichage de la page "Je veux prier un mystère"
                   //
-                 Container(
+                  Container(
                     padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UserLog(),
-                        ));
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Text('Je veux prier un mystère chaque jour', textAlign: TextAlign.center),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Color(0xaa1957CC),
-                      elevation: 10,
-                      minimumSize: const Size(30, 30))),
-                    color: Color(0xff1957CC),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UserLog(),
+                              ));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Text('Je veux prier un mystère chaque jour',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.height /
+                                      100 *
+                                      2.5)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xff1957CC),
+                            elevation: 10,
+                            minimumSize: const Size(30, 30))),
+                    color: Color(0x801957CC),
                   ),
                   //
                   // bouton d'affichage de la liste "Rejoindre une équipe"
                   //
-                  Container( child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AfficheSite("https://equipes-rosaire.org/nr"),
-                            ));
-                      },
-                      child:  Padding(
-                        padding: EdgeInsets.all(20),
-                        child: 
-                                          Text(
-                      'Rejoindre une équipe', 
-                      textAlign: TextAlign.center,
-                      style:TextStyle(
-                        fontSize: MediaQuery.of(context).size.height/100*5
-                        )),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          primary:  Color(0x2096143f),
-                          elevation: 10,
-                          minimumSize: const Size(30, 30))),
-                    color: Color(0xff96143f),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AfficheSite(
+                                    "https://equipes-rosaire.org/nr"),
+                              ));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Text('Rejoindre une équipe',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.height /
+                                      100 *
+                                      2.5)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xff96143f),
+                            elevation: 10,
+                            minimumSize: const Size(30, 30))),
+                    color: Color(0xaa96143f),
                   ),
 
                   //
                   // bouton d'affichage de la liste "Ils méditent"
-                  //                  
+                  //
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const IlsMeditent(),
-                        ));
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Text('Ils\nméditent', textAlign: TextAlign.center),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color(0xff2E986E),
-                      elevation: 10,
-                      minimumSize: const Size(30, 30))),
-                    color: Color(0xaa2E986E),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const IlsMeditent(),
+                              ));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Text('Ils\nméditent',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.height /
+                                      100 *
+                                      2.5)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xff2E986E),
+                            elevation: 10,
+                            minimumSize: Size(30, 30))),
+                    color: Color(0x902E986E),
                   ),
                 ]),
           ),

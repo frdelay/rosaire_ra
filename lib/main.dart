@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'accueil.dart';
 import 'meditation_affiche.dart';
 import '_theme.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  ///
+  /// Force the layout to Portrait mode
+  /// 
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
 
+  runApp(new MyApp());
+}
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
