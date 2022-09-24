@@ -8,14 +8,15 @@ import '_theme.dart';
 void main() async {
   ///
   /// Force the layout to Portrait mode
-  /// 
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]);
+  ///
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   runApp(new MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -59,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       theme: MonTheme(context),
       debugShowCheckedModeBanner: false,
       home: Builder(builder: (context) {
-        return isLogged == true ? AffMedit(login) :  Accueil();
+        return isLogged == true ? AffMedit(login) : Accueil();
       }),
     );
   }
