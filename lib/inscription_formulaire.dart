@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '_theme.dart';
 import 'meditation_affiche.dart';
 
 class UserLog extends StatefulWidget {
@@ -31,20 +30,18 @@ class _UserLogState extends State<UserLog> {
 
     String urlCreation =
         "https://app.equipes-rosaire.org/user2.php?Prenom=$uPrenom&Email=$uEmail&Ville=$uVille&Usernum=$uUsernum&Ekipnum=$uEkipnum";
-    print('ValidForm() urlCreation : ' + urlCreation);
+    //print('i_f.dart : urlCreation : ' + urlCreation);
     var uri = Uri.parse(urlCreation);
     var response = await http.post(uri);
 
-    print('Response body: ${response.body}');
+    print('i_f.dart : ${response.body}');
     var jsonMedit = jsonDecode(response.body);
 
     String uLogin = jsonMedit['Login'];
-    // String uNummedit = jsonMedit['Nummedit'];
 
     // on sauvegarde Login ( id )
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('ppLogin', uLogin);
-    print('form.dart : Login = ' + uLogin);
 
     Navigator.push(ctx, MaterialPageRoute(builder: (ctx) => AffMedit(uLogin)));
   }

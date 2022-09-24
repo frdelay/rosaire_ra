@@ -130,7 +130,7 @@ class LocalNotificationService {
       LocalNotificationService().showNotifDate(
           notificationDate,
           notificationTitle,
-          "\nBonjour $prenom, "
+          "\n$prenom, "
           "Aujourd'hui, ${jourFR[nomJourNotif]} $numeroJourNotif ${moisFR[moisNotif]} $anneeNotif, "
           "vous méditez un mystère ${famille[notificationCat]}",
           notifId);
@@ -142,11 +142,8 @@ class LocalNotificationService {
 
       // TODO: remove print below
       print(
-          "####   accueil.dart / notif  ####" 
-          "\n$notificationTitle ($selectedMeditationNumber)"
-          "\nBonjour $prenom, "
-          "Aujourd'hui, ${jourFR[nomJourNotif]} $numeroJourNotif ${moisFR[moisNotif]} $anneeNotif, "
-          "vous méditez un mystère ${famille[notificationCat]}"
+          "n_s.dart : $notificationTitle ($selectedMeditationNumber)"
+          " ${jourFR[nomJourNotif]} $numeroJourNotif  "
 );
     }
   }

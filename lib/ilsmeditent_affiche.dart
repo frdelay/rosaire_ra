@@ -65,10 +65,76 @@ class _IlsMeditentState extends State<IlsMeditent> {
             ),
             body: SingleChildScrollView(
               child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 15.0),
-                  child: Text("ils méditent",
-                      style: Theme.of(context).textTheme.headline4),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          color: colorTitle["J"],
+                          child: 
+                          Text('MYSTERES\nJOYEUX', 
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)
+                          )
+                        ),
+                      ),
+                    ),
+
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          color: colorTitle["L"],
+                          child: 
+                          Text('MYSTERES\nLUMINEUX', 
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)
+                          )
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 15.0),
+                      child: Text("ils méditent",
+                          style: Theme.of(context).textTheme.headline4),
+                    ),
+
+Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          color: colorTitle["G"],
+                          child: 
+                          Text('MYSTERES\nGLORIEUX', 
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)
+                          )
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          color: colorTitle["D"],
+                          child: 
+                          Text('MYSTERES\nDOULOUREUX', 
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)
+                          )
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
 
                 // '...' it's spread operator (https://www.geeksforgeeks.org/dart-spread-operator/)
@@ -86,11 +152,15 @@ class _IlsMeditentState extends State<IlsMeditent> {
                           child: Container(
                             margin: const EdgeInsets.only(left: 10),
                             child: Text(
-                              usersConnected.elementAt(index).keys.first.toString().substring(4),
+                              usersConnected
+                                  .elementAt(index)
+                                  .keys
+                                  .first
+                                  .toString()
+                                  .substring(4),
                               style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
-                              ),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
                           ),
                         ),
