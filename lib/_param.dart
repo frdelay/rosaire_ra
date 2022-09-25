@@ -2,6 +2,8 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 
+// Paramètres de date
+
 DateTime now = DateTime.now();
 String dayOfWeek = DateFormat.EEEE().format(now);
 String day = DateFormat.d().format(now);
@@ -40,7 +42,6 @@ const colorTitle = {
   "G": Color(0xff2E986E),
 };
 
-
 const coloredIcon1 = {
   "J": 'assets/ico1-J.png',
   "L": 'assets/ico1-L.png',
@@ -62,7 +63,6 @@ const coloredIcon4 = {
   "G": 'assets/ico4-G.png',
 };
 
-
 const coloredIcon5 = {
   "J": 'assets/ico5-J.png',
   "L": 'assets/ico5-L.png',
@@ -70,14 +70,12 @@ const coloredIcon5 = {
   "G": 'assets/ico5-G.png',
 };
 
-
 const coloredIcon6 = {
   "J": 'assets/ico6-J.png',
   "L": 'assets/ico6-L.png',
   "D": 'assets/ico6-D.png',
   "G": 'assets/ico6-G.png',
 };
-
 
 const coloredIcon7 = {
   "J": 'assets/ico7-J.png',

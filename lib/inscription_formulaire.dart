@@ -57,11 +57,10 @@ class _UserLogState extends State<UserLog> {
     return Builder(builder: (context) {
       return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 80,
+          toolbarHeight: MediaQuery.of(context).size.height / 100 * 20,
           backgroundColor: Colors.white,
           title: Center(
             child: Container(
-              height: 80,
               child: Image.asset(
                 'assets/EDR-logo-long.png',
                 fit: BoxFit.fitWidth,

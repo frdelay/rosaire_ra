@@ -43,7 +43,7 @@ class _AffMeditState extends State<AffMedit> {
   @override
   void initState() {
     actualisationJournaliere();
-    getUserPhp(widget.login,0);
+    getUserPhp(widget.login, 0);
     localNotificationService = LocalNotificationService();
     localNotificationService.init();
     super.initState();
@@ -53,18 +53,12 @@ class _AffMeditState extends State<AffMedit> {
     while (true) {
       DateTime time1 = DateTime(now.year, now.month, now.day);
 
-      /* verif formule de calcul
-      DateTime time3 = DateTime(2022, 9, 24);
-      int difJourstest = time3.difference(time1).inDays;
-      print("time1 $time1 time3 $time3 dif $difJourstest");
-      */
-
       await Future<dynamic>.delayed(const Duration(minutes: 60));
       DateTime time2 = DateTime(now.year, now.month, now.day);
 
       if (time1.day != time2.day) {
         int difJours = time2.difference(time1).inDays;
-        getUserPhp(widget.login,difJours);
+        getUserPhp(widget.login, difJours);
       }
     }
   }
@@ -81,7 +75,7 @@ class _AffMeditState extends State<AffMedit> {
       email = jsonMedit['Email'];
       ville = jsonMedit['Ville'];
       usernum = jsonMedit['Usernum'];
-      nummedit = int.parse(jsonMedit['Nummedit']) - 1+ difDate;
+      nummedit = int.parse(jsonMedit['Nummedit']) - 1 + difDate;
     });
     await getMeditations();
 
@@ -106,17 +100,31 @@ class _AffMeditState extends State<AffMedit> {
 
   @override
   Widget build(BuildContext context) {
+    // Paramètres de présentation
+    double mQh05 = MediaQuery.of(context).size.height / 100 * 5;
+        double mQh03 = MediaQuery.of(context).size.height / 100 * 3;
+    double mQh10 = MediaQuery.of(context).size.height / 100 * 10;
+    double mQh15 = MediaQuery.of(context).size.height / 100 * 15;
+    double mQh30 = MediaQuery.of(context).size.height / 100 * 30;
+
+    double mQh60 = MediaQuery.of(context).size.height / 100 * 60;
+
+    double mQw02 = MediaQuery.of(context).size.width / 100 * 2;
+    double mQw05 = MediaQuery.of(context).size.width / 100 * 5;
+    double mQw10 = MediaQuery.of(context).size.width / 100 * 10;
+    double mQw20 = MediaQuery.of(context).size.width / 100 * 20;
+    double mQw60 = MediaQuery.of(context).size.width / 100 * 60;
+
     return Container(
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            toolbarHeight: 60,
+                      toolbarHeight: MediaQuery.of(context).size.height / 100 * 10,
             automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             title: Center(
               child: Container(
-                height: 40,
                 child: Image.asset(
                   'assets/EDR-logo-long.png',
                   fit: BoxFit.fitWidth,
@@ -191,12 +199,12 @@ class _AffMeditState extends State<AffMedit> {
                                           color: Colors.white)))),
                         ]),
                       ),
-                      const SizedBox(height: 20.0),
+                       SizedBox(height: mQh03),
                       Container(
                         child: Text(meditationdujour.texteEvangile,
                             style: Theme.of(context).textTheme.bodyText1),
                       ),
-                      const SizedBox(height: 20.0),
+                       SizedBox(height: mQh03),
                       Divider(
                         height: 20,
                         thickness: 1,
@@ -207,7 +215,6 @@ class _AffMeditState extends State<AffMedit> {
                         children: <Widget>[
                           Image.asset(
                             coloredIcon1[meditationdujour.code[0]]!,
-                            // 'assets/ico1.png',
                             height: 30,
                             width: 30,
                           ),
@@ -215,19 +222,17 @@ class _AffMeditState extends State<AffMedit> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text("Méditation",
                                   style: Theme.of(context).textTheme.headline4)
-                              //  style: TextStyle(
-                              //    fontWeight: FontWeight.bold, fontSize: 18)),
                               ),
                         ],
                       ),
-                      const SizedBox(height: 20.0),
+                       SizedBox(height: mQh03),
                       Container(
                           child: Text(meditationdujour.texteMeditation,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3)), //style: TextStyle(fontSize: 18)),
 
-                      const SizedBox(height: 20.0),
+                       SizedBox(height: mQh03),
                       Divider(
                         height: 20,
                         thickness: 1,
@@ -250,7 +255,7 @@ class _AffMeditState extends State<AffMedit> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20.0),
+                       SizedBox(height: mQh03),
                       Container(
                         child: Text(
                           meditationdujour.texteIntentions,
@@ -312,7 +317,10 @@ class _AffMeditState extends State<AffMedit> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20.0),
+                       SizedBox(height: mQh03),
+                      //
+                      // Titre de la clausule
+                      //
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17),
@@ -332,7 +340,7 @@ class _AffMeditState extends State<AffMedit> {
                                       0.0, 0.0, 5.0, 0.0),
                                   child: Image.asset(
                                     coloredIcon4[meditationdujour.code[0]]!,
-                                    height: 30,
+                                    height: mQh05,
                                     width: 30,
                                   ),
                                 ),
@@ -341,9 +349,12 @@ class _AffMeditState extends State<AffMedit> {
                                         Theme.of(context).textTheme.headline4),
                               ],
                             ),
-                            const SizedBox(height: 20.0),
+
+                            //
+                            // Texte de la clausule
+                            //
                             Padding(
-                                padding: const EdgeInsets.all(0.8),
+                                padding:  EdgeInsets.all(mQh05),
                                 child: Container(
                                     child: Text(meditationdujour.texteClausules,
                                         textAlign: TextAlign.center,
@@ -356,6 +367,7 @@ class _AffMeditState extends State<AffMedit> {
                           ],
                         ),
                       ),
+                      SizedBox(height:mQh03),
                       if (meditationdujour.imgUrl != "")
                         Image(image: NetworkImage(meditationdujour.imgUrl)),
                       Padding(
@@ -372,10 +384,13 @@ class _AffMeditState extends State<AffMedit> {
                                 width: 30,
                               ),
                             ),
+                            //
+                            // Texte audio
+                            //
                             Container(
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(
-                                    0.0, 0.0, 5.0, 0.0),
+                                    0.0, 0, 5.0, 0.0),
                                 child: Text(
                                   "Audio",
                                   style: Theme.of(context).textTheme.headline4,
@@ -386,63 +401,68 @@ class _AffMeditState extends State<AffMedit> {
                           ],
                         ),
                       ),
-                      // SizedBox(height: MediaQuery.of(context).size.height/100*2),
+                      //
+                      // Player audio                  
+                      //        
                       Container(
-                          //Audio
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 4,
+                                color: colorTitle[meditationdujour.code[0]]!,
+                              ),
+                              borderRadius: BorderRadius.circular(12)),
                           child: Row(
-                        children: [
-                          isPlaying == false
-                              ? IconButton(
-                                  icon: const Icon(Icons.play_arrow),
-                                  tooltip: 'lancer l audio',
-                                  onPressed: () {
-                                    print(meditationdujour.audioUrl);
-                                    playeraudio.play();
-                                    setState(() {
-                                      isPlaying = true;
-                                    });
-                                  },
-                                )
-                              : IconButton(
-                                  icon: const Icon(Icons.pause),
-                                  tooltip: 'pause',
-                                  onPressed: () {
-                                    print("pause");
-                                    playeraudio.pause();
-                                    setState(() {
-                                      isPlaying = false;
-                                    });
-                                  },
-                                ),
-                          IconButton(
-                            icon: const Icon(Icons.stop),
-                            tooltip: 'stop',
-                            onPressed: () {
-                              print("stop");
-                              playeraudio.dispose();
-                              //playeraudio.stop();
-                              setState(() {
-                                isPlaying = false;
-                              });
-                            },
-                          ),
-                          Text(meditationdujour.audioTitre)
-                        ],
-                      )),
-                      const SizedBox(height: 20.0),
+                            children: [
+                              isPlaying == false
+                                  ? IconButton(
+                                      icon: const Icon(Icons.play_arrow,
+                                          color: Colors.red),
+                                      tooltip: 'lancer l audio',
+                                      onPressed: () {
+                                        print(meditationdujour.audioUrl);
+                                        playeraudio.play();
+                                        setState(() {
+                                          isPlaying = true;
+                                        });
+                                      },
+                                    )
+                                  : IconButton(
+                                      icon: const Icon(Icons.pause),
+                                      tooltip: 'pause',
+                                      onPressed: () {
+                                        print("pause");
+                                        playeraudio.pause();
+                                        setState(() {
+                                          isPlaying = false;
+                                        });
+                                      },
+                                    ),
+                              IconButton(
+                                icon: const Icon(Icons.stop),
+                                tooltip: 'stop',
+                                onPressed: () {
+                                  print("stop");
+                                  playeraudio.dispose();
+                                  //playeraudio.stop();
+                                  setState(() {
+                                    isPlaying = false;
+                                  });
+                                },
+                              ),
+                              Text(meditationdujour.audioTitre)
+                            ],
+                          )),
+                       SizedBox(height: mQh03),
                       Divider(
-                        height: 20,
                         thickness: 1,
                         color: colorTitle[meditationdujour.code[0]],
                       ),
-                      /**/
                       const SizedBox(height: 20.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
+                            padding: EdgeInsets.fromLTRB(0, 0, 2, 0),
                             child: Image.asset(
                               coloredIcon7[meditationdujour.code[0]]!,
                               height: 30,
@@ -466,16 +486,26 @@ class _AffMeditState extends State<AffMedit> {
                           initialUrl: meditationdujour.videoUrl,
                           javascriptMode: JavascriptMode.unrestricted,
                         ),
-                        height: MediaQuery.of(context).size.height / 100 * 30,
+                        height: mQh30,
                       ),
+
+                      SizedBox(height: mQh15),
                     ],
                   ),
                 ),
+
+          //
+          // Pied de page
+          //
+
           bottomSheet: Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                //
+                // Bouton  "vers le site"
+                //
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 3 - 10,
                   child: ElevatedButton(
@@ -499,6 +529,9 @@ class _AffMeditState extends State<AffMedit> {
                           elevation: 10,
                           minimumSize: const Size(45, 30))),
                 ),
+                //
+                // Bouton  "ils méditent"
+                //
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 3 - 10,
                   child: ElevatedButton(
@@ -519,8 +552,11 @@ class _AffMeditState extends State<AffMedit> {
                           elevation: 10,
                           minimumSize: const Size(60, 30))),
                 ),
+                //
+                // Bouton  "laisser un message"
+                //
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 3 - 10,
+                  width: mQh15,
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
