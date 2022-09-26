@@ -1,6 +1,18 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
+// Paramètres de mise en page
+
+class Display{
+
+BuildContext context;
+
+Display(this.context);
+h()=>MediaQuery.of(context).size.height/100;
+w()=>MediaQuery.of(context).size.width/100;
+}
+
+
 
 // Paramètres de date
 

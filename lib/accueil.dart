@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rosaire/site_affiche.dart';
 import 'ilsmeditent_affiche.dart';
 import 'inscription_formulaire.dart';
+import '_param.dart';
 
 class Accueil extends StatelessWidget {
   String urlSite = "";
@@ -30,15 +31,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State {
 
-  var size,h,w;
 
   @override
   Widget build(BuildContext context) {
 
     // getting the size of the window
-    size = MediaQuery.of(context).size;
-    h = size.height/100;
-    w = size.width/100;
+    var size = MediaQuery.of(context).size;
+    var h = size.height/100;
+    var w = size.width/100;
 
 
 
@@ -57,9 +57,11 @@ class _MyHomePageState extends State {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(
-            height: h*20,
+          Container(
+            //color:Colors.amber,
+            height: Display(context).h()*20,
             child: Text(
               "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
               style: Theme.of(context).textTheme.headline5,
@@ -67,7 +69,7 @@ class _MyHomePageState extends State {
             ),
           ),
           SizedBox(
-            height: h*75,
+            height: h*55,
             child: GridView.count(
                 primary: false,
                 padding: EdgeInsets.all(w*2),
@@ -90,7 +92,7 @@ class _MyHomePageState extends State {
                               ));
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(w * 2),
                           child: Text('Une prière chaque jour',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -98,15 +100,14 @@ class _MyHomePageState extends State {
                         ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xffac7a10),
-                            elevation: 10,
-                            minimumSize: const Size(30, 30))),
+                            elevation: 10)),
                     color: Color(0x80ac7a10),
                   ),
                   //
                   // bouton d'affichage de la page "Je veux prier un mystère"
                   //
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    padding:  EdgeInsets.all(w * 2),
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -116,18 +117,16 @@ class _MyHomePageState extends State {
                               ));
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(w*2),
                           child: Text('Je veux prier un mystère chaque jour',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height /
-                                      100 *
-                                      2.5)),
+                              style: TextStyle(fontSize: h * 2.5)
+                                  ),
                         ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xff1957CC),
-                            elevation: 10,
-                            minimumSize: const Size(30, 30))),
+                            elevation: 10)
+                            ),
                     color: Color(0x801957CC),
                   ),
                   //
@@ -148,15 +147,13 @@ class _MyHomePageState extends State {
                           padding: EdgeInsets.all(10),
                           child: Text('Rejoindre une équipe',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height /
-                                      100 *
-                                      2.5)),
+                              style: TextStyle(fontSize: h * 2.5)
+                       ),
                         ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xff96143f),
                             elevation: 10,
-                            minimumSize: const Size(30, 30))),
+                            )),
                     color: Color(0xaa96143f),
                   ),
 
@@ -178,14 +175,12 @@ class _MyHomePageState extends State {
                           child: Text('Ils\nméditent',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height /
-                                      100 *
-                                      2.5)),
+                                  fontSize: h* 2.5)
+                                  ),
                         ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xff2E986E),
-                            elevation: 10,
-                            minimumSize: Size(30, 30))),
+                            elevation: 10)),
                     color: Color(0x902E986E),
                   ),
                 ]),

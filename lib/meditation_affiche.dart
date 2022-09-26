@@ -39,7 +39,7 @@ class _AffMeditState extends State<AffMedit> {
   Meditation meditNotif = Meditation();
 
   late final LocalNotificationService localNotificationService;
-
+DateTime heurecour=DateTime.now();
   @override
   void initState() {
     actualisationJournaliere();
@@ -100,6 +100,7 @@ class _AffMeditState extends State<AffMedit> {
 
   @override
   Widget build(BuildContext context) {
+
     // Paramètres de présentation
     double mQh05 = MediaQuery.of(context).size.height / 100 * 5;
         double mQh03 = MediaQuery.of(context).size.height / 100 * 3;
@@ -139,7 +140,8 @@ class _AffMeditState extends State<AffMedit> {
                   child: ListView(
                     children: [
                       Text(
-                        "Bonjour $prenom !",
+
+                        "$heurecour Bonjour $prenom !",
                         style: Theme.of(context).textTheme.headline4?.merge(
                             TextStyle(
                                 color: colorTitle[meditationdujour.code[0]])),

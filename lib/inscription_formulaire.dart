@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:rosaire/main.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'meditation_affiche.dart';
+import '_param.dart';
 
 class UserLog extends StatefulWidget {
   @override
@@ -43,7 +45,7 @@ class _UserLogState extends State<UserLog> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('ppLogin', uLogin);
 
-    Navigator.push(ctx, MaterialPageRoute(builder: (ctx) => AffMedit(uLogin)));
+    Navigator.push(ctx, MaterialPageRoute(builder: (ctx) => MyApp()));
   }
 
   bool isEmailValid(String email) {
@@ -57,7 +59,7 @@ class _UserLogState extends State<UserLog> {
     return Builder(builder: (context) {
       return Scaffold(
         appBar: AppBar(
-          toolbarHeight: MediaQuery.of(context).size.height / 100 * 20,
+          toolbarHeight: Display(context).h() * 10,
           backgroundColor: Colors.white,
           title: Center(
             child: Container(
@@ -69,12 +71,33 @@ class _UserLogState extends State<UserLog> {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(50.0),
+          padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
               child: Column(
                 children: [
+
+                                    Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextButton(
+                      child: Text('Créer mon compte'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black54,
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic),
+                      ),
+                      onPressed: () {
+                        // on verifie que les champs ne sont plus vide
+                        if (_formKey.currentState!.validate()) {
+                          ValidForm(context);
+                        }
+                      },
+                    ),
+                  ),
                   //
                   // SAISIE DU PRENOM
                   //
@@ -252,27 +275,7 @@ class _UserLogState extends State<UserLog> {
                               EdgeInsetsDirectional.fromSTEB(15, 10, 20, 24),
                         ),
                       )),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: TextButton(
-                      child: Text('Créer mon compte'),
-                      style: TextButton.styleFrom(
-                        primary: Colors.white,
-                        backgroundColor: Colors.black54,
-                        onSurface: Colors.grey,
-                        textStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      onPressed: () {
-                        // on verifie que les champs ne sont plus vide
-                        if (_formKey.currentState!.validate()) {
-                          ValidForm(context);
-                        }
-                      },
-                    ),
-                  ),
+
                   SizedBox(height: 20.0),
                   Text(
                     'En remplissant ce formulaire vous recevrez tous les jours une méditation tenant compte de votre numéro d\'équipier et du calendrier des mystères',
