@@ -5,9 +5,11 @@ import 'inscription_formulaire.dart';
 
 class Accueil extends StatelessWidget {
   String urlSite = "";
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
+
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -27,32 +29,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State {
+
+  var size,h,w;
+
   @override
   Widget build(BuildContext context) {
 
-    // Paramètres de présentation
-    double mQh03 = MediaQuery.of(context).size.height / 100 * 3;
-    double mQh05 = MediaQuery.of(context).size.height / 100 * 5;
-    double mQh10 = MediaQuery.of(context).size.height / 100 * 10;
-    double mQh12 = MediaQuery.of(context).size.height / 100 * 12;
-    double mQh60 = MediaQuery.of(context).size.height / 100 * 60;
-    double mQh75 = MediaQuery.of(context).size.height / 100 * 75;
+    // getting the size of the window
+    size = MediaQuery.of(context).size;
+    h = size.height/100;
+    w = size.width/100;
 
-    double mQw02 = MediaQuery.of(context).size.width / 100 * 2;
-    double mQw05 = MediaQuery.of(context).size.width / 100 * 5;
-    double mQw10 = MediaQuery.of(context).size.width / 100 * 10;
-    double mQw20 = MediaQuery.of(context).size.width / 100 * 20;
-    double mQw60 = MediaQuery.of(context).size.width / 100 * 60;
 
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: mQh10,
+        toolbarHeight: h*10,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Center(
           child: Container(
-            //height: 80,
             child: Image.asset(
               'assets/EDR-logo-long.png',
               fit: BoxFit.fitWidth,
@@ -63,7 +59,7 @@ class _MyHomePageState extends State {
       body: Column(
         children: [
           SizedBox(
-            height: mQh12,
+            height: h*20,
             child: Text(
               "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
               style: Theme.of(context).textTheme.headline5,
@@ -71,12 +67,12 @@ class _MyHomePageState extends State {
             ),
           ),
           SizedBox(
-            height: mQh75,
+            height: h*75,
             child: GridView.count(
                 primary: false,
-                padding: EdgeInsets.all(mQw02),
-                crossAxisSpacing: mQw02,
-                mainAxisSpacing: mQw02,
+                padding: EdgeInsets.all(w*2),
+                crossAxisSpacing: w*2,
+                mainAxisSpacing: w*2,
                 crossAxisCount: 2,
                 children: [
                   //
@@ -98,9 +94,7 @@ class _MyHomePageState extends State {
                           child: Text('Une prière chaque jour',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height /
-                                      100 *
-                                      2.5)),
+                                  fontSize: h*2.5)),
                         ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xffac7a10),
