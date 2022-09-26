@@ -22,7 +22,33 @@ class AffMedit extends StatefulWidget {
   State<AffMedit> createState() => _AffMeditState();
 }
 
-class _AffMeditState extends State<AffMedit> {
+class _AffMeditState extends State<AffMedit>  with WidgetsBindingObserver{
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        print("app in resumed");
+        getUserPhp(widget.login);
+        break;
+      case AppLifecycleState.inactive:
+        print("app in inactive");
+        break;
+      case AppLifecycleState.paused:
+        print("app in paused");
+        break;
+      case AppLifecycleState.detached:
+        print("app in detached");
+        break;
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   //variables globales
   final playeraudio = AudioPlayer();
 
@@ -42,29 +68,30 @@ class _AffMeditState extends State<AffMedit> {
 DateTime heurecour=DateTime.now();
   @override
   void initState() {
-    actualisationJournaliere();
-    getUserPhp(widget.login, 0);
+    WidgetsBinding.instance.addObserver(this);
+    // actualisationJournaliere();
+    getUserPhp(widget.login);
     localNotificationService = LocalNotificationService();
     localNotificationService.init();
     super.initState();
   }
 
-  actualisationJournaliere() async {
-    while (true) {
-      DateTime time1 = DateTime(now.year, now.month, now.day);
-
-      await Future<dynamic>.delayed(const Duration(minutes: 60));
-      DateTime time2 = DateTime(now.year, now.month, now.day);
-
-      if (time1.day != time2.day) {
-        int difJours = time2.difference(time1).inDays;
-        getUserPhp(widget.login, difJours);
-      }
-    }
-  }
+  // actualisationJournaliere() async {
+  //   while (true) {
+  //     DateTime time1 = DateTime(now.year, now.month, now.day);
+  //
+  //     await Future<dynamic>.delayed(const Duration(minutes: 60));
+  //     DateTime time2 = DateTime(now.year, now.month, now.day);
+  //
+  //     if (time1.day != time2.day) {
+  //       int difJours = time2.difference(time1).inDays;
+  //       getUserPhp(widget.login, );
+  //     }
+  //   }
+  // }
 
   // on récupère les données de l'utilisateur depuis la shared préference Login
-  Future<void> getUserPhp(String loginId, int difDate) async {
+  Future<void> getUserPhp(String loginId) async {
     var uri =
         Uri.parse("https://app.equipes-rosaire.org/user2.php?Login=$loginId");
     var response = await http.post(uri);
@@ -75,7 +102,7 @@ DateTime heurecour=DateTime.now();
       email = jsonMedit['Email'];
       ville = jsonMedit['Ville'];
       usernum = jsonMedit['Usernum'];
-      nummedit = int.parse(jsonMedit['Nummedit']) - 1 + difDate;
+      nummedit = int.parse(jsonMedit['Nummedit']) - 1;
     });
     await getMeditations();
 
