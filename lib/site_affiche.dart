@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '_param.dart';
+
 class AfficheSite extends StatefulWidget {
   final String url;
   const AfficheSite(this.url);
@@ -31,7 +33,8 @@ class _AfficheSiteState extends State<AfficheSite> {
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              toolbarHeight: 50,
+              toolbarHeight: Display(context).h()*8,
+
               automaticallyImplyLeading: false,
               backgroundColor: Colors.white,
               title: Center(

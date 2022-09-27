@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '_param.dart';
 import 'msg_affiche.dart';
 
 class EnvMsg extends StatelessWidget {
@@ -47,7 +48,8 @@ class EnvMsg extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               }),
-          toolbarHeight: 50,
+          toolbarHeight: Display(context).h()*8,
+
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: Center(
@@ -61,7 +63,7 @@ class EnvMsg extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(50.0),
+          padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Column(
               children: [

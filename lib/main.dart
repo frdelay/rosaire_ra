@@ -28,6 +28,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool isLogged = false;
+  bool isLoading = false;
   String login = "";
 
   @override
@@ -51,6 +52,9 @@ class _MyAppState extends State<MyApp> {
         isLogged = true;
       });
     }
+    setState(() {
+      isLoading = true;
+    });
   }
 
   @override
@@ -59,9 +63,11 @@ class _MyAppState extends State<MyApp> {
       title: MyApp._title,
       theme: MonTheme(context),
       debugShowCheckedModeBanner: false,
-      home: Builder(builder: (context) {
-        return isLogged == true ? AffMedit(login) : Accueil();
-      }),
+      home: isLoading == true
+          ? Builder(builder: (context) {
+              return isLogged == true ? AffMedit(login) : Accueil();
+            })
+          : CircularProgressIndicator(),
     );
   }
 }

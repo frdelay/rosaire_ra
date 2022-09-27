@@ -50,12 +50,11 @@ class _IlsMeditentState extends State<IlsMeditent> {
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              toolbarHeight: 40,
+              toolbarHeight:  Display(context).h()*8,
               automaticallyImplyLeading: false,
               backgroundColor: Colors.white,
               title: Center(
                 child: Container(
-                  height: 80,
                   child: Image.asset(
                     'assets/EDR-logo-long.png',
                     fit: BoxFit.fitWidth,

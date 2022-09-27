@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
@@ -22,8 +23,7 @@ class AffMedit extends StatefulWidget {
   State<AffMedit> createState() => _AffMeditState();
 }
 
-class _AffMeditState extends State<AffMedit>  with WidgetsBindingObserver{
-
+class _AffMeditState extends State<AffMedit> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
@@ -60,12 +60,15 @@ class _AffMeditState extends State<AffMedit>  with WidgetsBindingObserver{
   int nummedit = 0;
   bool isLoading = true;
   bool isPlaying = false;
+  DateTime heure = DateTime.now();
+  String nomJour = "";
+  String noJour = "";
+  int moisJour =0;
+  String anneeJour = "";
 
   Meditation meditationdujour = Meditation();
   Meditation meditNotif = Meditation();
-
   late final LocalNotificationService localNotificationService;
-DateTime heurecour=DateTime.now();
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
@@ -75,20 +78,6 @@ DateTime heurecour=DateTime.now();
     localNotificationService.init();
     super.initState();
   }
-
-  // actualisationJournaliere() async {
-  //   while (true) {
-  //     DateTime time1 = DateTime(now.year, now.month, now.day);
-  //
-  //     await Future<dynamic>.delayed(const Duration(minutes: 60));
-  //     DateTime time2 = DateTime(now.year, now.month, now.day);
-  //
-  //     if (time1.day != time2.day) {
-  //       int difJours = time2.difference(time1).inDays;
-  //       getUserPhp(widget.login, );
-  //     }
-  //   }
-  // }
 
   // on récupère les données de l'utilisateur depuis la shared préference Login
   Future<void> getUserPhp(String loginId) async {
@@ -103,6 +92,12 @@ DateTime heurecour=DateTime.now();
       ville = jsonMedit['Ville'];
       usernum = jsonMedit['Usernum'];
       nummedit = int.parse(jsonMedit['Nummedit']) - 1;
+      heure = DateTime.now();
+
+      nomJour = DateFormat.EEEE().format(heure);
+      noJour = DateFormat.d().format(heure);
+      moisJour = int.parse(DateFormat.M().format(heure)) - 1;
+      anneeJour = DateFormat.y().format(heure);
     });
     await getMeditations();
 
@@ -127,28 +122,12 @@ DateTime heurecour=DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-
-    // Paramètres de présentation
-    double mQh05 = MediaQuery.of(context).size.height / 100 * 5;
-        double mQh03 = MediaQuery.of(context).size.height / 100 * 3;
-    double mQh10 = MediaQuery.of(context).size.height / 100 * 10;
-    double mQh15 = MediaQuery.of(context).size.height / 100 * 15;
-    double mQh30 = MediaQuery.of(context).size.height / 100 * 30;
-
-    double mQh60 = MediaQuery.of(context).size.height / 100 * 60;
-
-    double mQw02 = MediaQuery.of(context).size.width / 100 * 2;
-    double mQw05 = MediaQuery.of(context).size.width / 100 * 5;
-    double mQw10 = MediaQuery.of(context).size.width / 100 * 10;
-    double mQw20 = MediaQuery.of(context).size.width / 100 * 20;
-    double mQw60 = MediaQuery.of(context).size.width / 100 * 60;
-
     return Container(
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-                      toolbarHeight: MediaQuery.of(context).size.height / 100 * 10,
+            toolbarHeight: Display(context).h() * 10,
             automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             title: Center(
@@ -167,8 +146,7 @@ DateTime heurecour=DateTime.now();
                   child: ListView(
                     children: [
                       Text(
-
-                        "$heurecour Bonjour $prenom !",
+                        "Bonjour $prenom !",
                         style: Theme.of(context).textTheme.headline4?.merge(
                             TextStyle(
                                 color: colorTitle[meditationdujour.code[0]])),
@@ -181,7 +159,7 @@ DateTime heurecour=DateTime.now();
                           textAlign: TextAlign.center,
                           text: TextSpan(
                             text:
-                                "Aujourd'hui, ${jourFR[dayOfWeek]} $day ${moisFR[mois]}  $year, \nvous méditez un ",
+                                "Aujourd'hui, ${jourFR[nomJour]} $noJour ${moisFR[moisJour]} $anneeJour, \nvous méditez un ",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2
@@ -228,12 +206,12 @@ DateTime heurecour=DateTime.now();
                                           color: Colors.white)))),
                         ]),
                       ),
-                       SizedBox(height: mQh03),
+                      SizedBox(height: Display(context).h() * 3),
                       Container(
                         child: Text(meditationdujour.texteEvangile,
                             style: Theme.of(context).textTheme.bodyText1),
                       ),
-                       SizedBox(height: mQh03),
+                      SizedBox(height: Display(context).h() * 3),
                       Divider(
                         height: 20,
                         thickness: 1,
@@ -250,18 +228,18 @@ DateTime heurecour=DateTime.now();
                           Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text("Méditation",
-                                  style: Theme.of(context).textTheme.headline4)
-                              ),
+                                  style:
+                                      Theme.of(context).textTheme.headline4)),
                         ],
                       ),
-                       SizedBox(height: mQh03),
+                      SizedBox(height: Display(context).h() * 3),
                       Container(
                           child: Text(meditationdujour.texteMeditation,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3)), //style: TextStyle(fontSize: 18)),
 
-                       SizedBox(height: mQh03),
+                      SizedBox(height: Display(context).h() * 3),
                       Divider(
                         height: 20,
                         thickness: 1,
@@ -272,8 +250,8 @@ DateTime heurecour=DateTime.now();
                         children: <Widget>[
                           Image.asset(
                             coloredIcon2[meditationdujour.code[0]]!,
-                            height: 30,
-                            width: 30,
+                            height: Display(context).h() * 4,
+                            width: Display(context).h() * 4,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -284,7 +262,7 @@ DateTime heurecour=DateTime.now();
                           ),
                         ],
                       ),
-                       SizedBox(height: mQh03),
+                      SizedBox(height: Display(context).h() * 3),
                       Container(
                         child: Text(
                           meditationdujour.texteIntentions,
@@ -321,8 +299,8 @@ DateTime heurecour=DateTime.now();
                                         0.0, 0.0, 5.0, 0.0),
                                     child: Image.asset(
                                       coloredIcon5[meditationdujour.code[0]]!,
-                                      height: 30,
-                                      width: 30,
+                                      height: Display(context).h() * 4,
+                                      width: Display(context).h() * 4,
                                     ),
                                   ),
                                   Text("Fruit du mystère",
@@ -331,11 +309,11 @@ DateTime heurecour=DateTime.now();
                                           .headline4),
                                 ],
                               ),
-                              const SizedBox(height: 10.0),
+                              SizedBox(height: Display(context).h() * 3),
                               Container(
                                 child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      0.0, 0.0, 0.0, 10.0),
+                                  padding:
+                                      EdgeInsets.all(Display(context).h() * 2),
                                   child: Text(meditationdujour.texteFruit,
                                       style: Theme.of(context)
                                           .textTheme
@@ -346,7 +324,7 @@ DateTime heurecour=DateTime.now();
                           ),
                         ),
                       ),
-                       SizedBox(height: mQh03),
+                      SizedBox(height: Display(context).h() * 3),
                       //
                       // Titre de la clausule
                       //
@@ -369,8 +347,7 @@ DateTime heurecour=DateTime.now();
                                       0.0, 0.0, 5.0, 0.0),
                                   child: Image.asset(
                                     coloredIcon4[meditationdujour.code[0]]!,
-                                    height: mQh05,
-                                    width: 30,
+                                    height: Display(context).h() * 5,
                                   ),
                                 ),
                                 Text("Les clausules",
@@ -383,7 +360,8 @@ DateTime heurecour=DateTime.now();
                             // Texte de la clausule
                             //
                             Padding(
-                                padding:  EdgeInsets.all(mQh05),
+                                padding:
+                                    EdgeInsets.all(Display(context).h() * 5),
                                 child: Container(
                                     child: Text(meditationdujour.texteClausules,
                                         textAlign: TextAlign.center,
@@ -396,43 +374,55 @@ DateTime heurecour=DateTime.now();
                           ],
                         ),
                       ),
-                      SizedBox(height:mQh03),
-                      if (meditationdujour.imgUrl != "")
-                        Image(image: NetworkImage(meditationdujour.imgUrl)),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0),
-                              child: Image.asset(
-                                coloredIcon6[meditationdujour.code[0]]!,
-                                height: 30,
-                                width: 30,
-                              ),
-                            ),
-                            //
-                            // Texte audio
-                            //
-                            Container(
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    0.0, 0, 5.0, 0.0),
-                                child: Text(
-                                  "Audio",
-                                  style: Theme.of(context).textTheme.headline4,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+
+                      SizedBox(height: Display(context).h() * 3),
+
                       //
-                      // Player audio                  
-                      //        
+                      // Affichage de l'image
+                      //
+
+                      if (meditationdujour.imgUrl != "")
+                        Container(
+                          color: Colors.amber,
+                          //padding : EdgeInsets.all(Display(context).w()*20),
+                          child: Image(
+                            image: NetworkImage(meditationdujour.imgUrl),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+
+                      SizedBox(height: Display(context).h() * 3),
+
+                      //
+                      // Bloc audio
+                      //
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          //
+                          // Icone audio
+                          //
+                          Image.asset(
+                            coloredIcon6[meditationdujour.code[0]]!,
+                            height: Display(context).h() * 4,
+                          ),
+
+                          //
+                          // Texte audio
+                          //
+                          Text(
+                            " Audio",
+                            style: Theme.of(context).textTheme.headline4,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: Display(context).h() * 3),
+                      //
+                      // Player audio
+                      //
                       Container(
                           decoration: BoxDecoration(
                               border: Border.all(
@@ -444,8 +434,9 @@ DateTime heurecour=DateTime.now();
                             children: [
                               isPlaying == false
                                   ? IconButton(
-                                      icon: const Icon(Icons.play_arrow,
-                                          color: Colors.red),
+                                      icon: Icon(Icons.play_arrow,
+                                          color: colorTitle[
+                                              meditationdujour.code[0]]!),
                                       tooltip: 'lancer l audio',
                                       onPressed: () {
                                         print(meditationdujour.audioUrl);
@@ -467,12 +458,14 @@ DateTime heurecour=DateTime.now();
                                       },
                                     ),
                               IconButton(
-                                icon: const Icon(Icons.stop),
+                                icon: Icon(Icons.stop,
+                                    color:
+                                        colorTitle[meditationdujour.code[0]]!),
                                 tooltip: 'stop',
                                 onPressed: () {
                                   print("stop");
-                                  playeraudio.dispose();
-                                  //playeraudio.stop();
+                                  playeraudio.stop();
+                                  playeraudio.seek(Duration(seconds: 0));
                                   setState(() {
                                     isPlaying = false;
                                   });
@@ -481,44 +474,44 @@ DateTime heurecour=DateTime.now();
                               Text(meditationdujour.audioTitre)
                             ],
                           )),
-                       SizedBox(height: mQh03),
+                      SizedBox(height: Display(context).h() * 3),
                       Divider(
                         thickness: 1,
                         color: colorTitle[meditationdujour.code[0]],
                       ),
-                      const SizedBox(height: 20.0),
+                      //
+                      // Bloc video
+                      //
+                      SizedBox(height: Display(context).h() * 3),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 2, 0),
-                            child: Image.asset(
-                              coloredIcon7[meditationdujour.code[0]]!,
-                              height: 30,
-                              width: 30,
-                            ),
+                          Image.asset(
+                            coloredIcon7[meditationdujour.code[0]]!,
+                            height: Display(context).h() * 4,
                           ),
-                          Container(
-                            //Video
-                            child: Text(
-                              "Video",
-                              style: Theme.of(context).textTheme.headline4,
-                              textAlign: TextAlign.center,
-                            ),
+                          Text(
+                            " Video",
+                            style: Theme.of(context).textTheme.headline4,
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20.0),
+                      SizedBox(height: Display(context).h() * 3),
                       Container(
-                        //child: Text(videoUrl, style: TextStyle(fontSize: 14)),
                         child: WebView(
                           initialUrl: meditationdujour.videoUrl,
                           javascriptMode: JavascriptMode.unrestricted,
                         ),
-                        height: mQh30,
+                        height: Display(context).h() * 35,
                       ),
 
-                      SizedBox(height: mQh15),
+                      SizedBox(
+                        height: Display(context).h() * 15,
+                        child:Text("$heure")
+                        )
+                        
                     ],
                   ),
                 ),
@@ -536,7 +529,8 @@ DateTime heurecour=DateTime.now();
                 // Bouton  "vers le site"
                 //
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 3 - 10,
+                  width: Display(context).w() * 25,
+                  height: Display(context).h() * 5,
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -546,23 +540,20 @@ DateTime heurecour=DateTime.now();
                                   "https://equipes-rosaire.org/accueil-appli"),
                             ));
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                        child: Text(
-                          'Vers\nle site',
-                          textAlign: TextAlign.center,
-                        ),
+                      child: Text(
+                        'Vers\nle site',
+                        textAlign: TextAlign.center,
                       ),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: colorTitle[meditationdujour.code[0]],
-                          elevation: 10,
-                          minimumSize: const Size(45, 30))),
+                          elevation: 10)),
                 ),
                 //
                 // Bouton  "ils méditent"
                 //
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 3 - 10,
+                  width: Display(context).w() * 25,
+                  height: Display(context).h() * 5,
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -571,21 +562,17 @@ DateTime heurecour=DateTime.now();
                               builder: (context) => const IlsMeditent(),
                             ));
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                        child:
-                            Text('Ils\nméditent', textAlign: TextAlign.center),
-                      ),
+                      child: Text('Ils\nméditent', textAlign: TextAlign.center),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: colorTitle[meditationdujour.code[0]],
-                          elevation: 10,
-                          minimumSize: const Size(60, 30))),
+                          elevation: 10)),
                 ),
                 //
                 // Bouton  "laisser un message"
                 //
                 SizedBox(
-                  width: mQh15,
+                  width: Display(context).w() * 35,
+                  height: Display(context).h() * 5,
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -595,15 +582,11 @@ DateTime heurecour=DateTime.now();
                                   EnvMsg(widget.login, prenom, email),
                             ));
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 6.0, 0.0, 6.0),
-                        child: Text('Laisser\nun message',
-                            textAlign: TextAlign.center),
-                      ),
+                      child: Text('Laisser\nun message',
+                          textAlign: TextAlign.center),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: colorTitle[meditationdujour.code[0]],
-                          elevation: 10,
-                          minimumSize: const Size(50, 30))),
+                          elevation: 10)),
                 ),
               ],
             ),

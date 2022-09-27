@@ -35,16 +35,10 @@ class _MyHomePageState extends State {
   @override
   Widget build(BuildContext context) {
 
-    // getting the size of the window
-    var size = MediaQuery.of(context).size;
-    var h = size.height/100;
-    var w = size.width/100;
-
-
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: h*10,
+        toolbarHeight: Display(context).h()*10,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Center(
@@ -57,24 +51,16 @@ class _MyHomePageState extends State {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            //color:Colors.amber,
-            height: Display(context).h()*20,
-            child: Text(
-              "\nMÉDITER UN MYSTÈRE\nchaque jour avec\nUNE EQUIPE DU ROSAIRE\n",
-              style: Theme.of(context).textTheme.headline5,
-              textAlign: TextAlign.center,
-            ),
-          ),
+
           SizedBox(
-            height: h*55,
+            height: Display(context).h() * 80,
             child: GridView.count(
                 primary: false,
-                padding: EdgeInsets.all(w*2),
-                crossAxisSpacing: w*2,
-                mainAxisSpacing: w*2,
+                padding: EdgeInsets.all(Display(context).w() * 5),
+                crossAxisSpacing: Display(context).w() * 2,
+                mainAxisSpacing: Display(context).w() * 2,
                 crossAxisCount: 2,
                 children: [
                   //
@@ -92,11 +78,11 @@ class _MyHomePageState extends State {
                               ));
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(w * 2),
+                          padding: EdgeInsets.all(Display(context).w() * 2),
                           child: Text('Une prière chaque jour',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: h*2.5)),
+                                  fontSize: Display(context).h() *2.5)),
                         ),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xffac7a10),
@@ -107,7 +93,7 @@ class _MyHomePageState extends State {
                   // bouton d'affichage de la page "Je veux prier un mystère"
                   //
                   Container(
-                    padding:  EdgeInsets.all(w * 2),
+                    padding:  EdgeInsets.all(Display(context).w()  * 2),
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -117,10 +103,10 @@ class _MyHomePageState extends State {
                               ));
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(w*2),
+                          padding: EdgeInsets.all(Display(context).w() * 2),
                           child: Text('Je veux prier un mystère chaque jour',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: h * 2.5)
+                              style: TextStyle(fontSize: Display(context).h() *  2.5)
                                   ),
                         ),
                         style: ElevatedButton.styleFrom(
@@ -147,7 +133,7 @@ class _MyHomePageState extends State {
                           padding: EdgeInsets.all(10),
                           child: Text('Rejoindre une équipe',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: h * 2.5)
+                              style: TextStyle(fontSize: Display(context).h() * 2.5)
                        ),
                         ),
                         style: ElevatedButton.styleFrom(
@@ -175,7 +161,7 @@ class _MyHomePageState extends State {
                           child: Text('Ils\nméditent',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: h* 2.5)
+                                  fontSize: Display(context).h() * 2.5)
                                   ),
                         ),
                         style: ElevatedButton.styleFrom(
