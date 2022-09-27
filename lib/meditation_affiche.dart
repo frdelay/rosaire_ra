@@ -552,7 +552,7 @@ class _AffMeditState extends State<AffMedit> with WidgetsBindingObserver {
                 // Bouton  "ils méditent"
                 //
                 SizedBox(
-                  width: Display(context).w() * 25,
+                  width: Display(context).w() * 30,
                   height: Display(context).h() * 5,
                   child: ElevatedButton(
                       onPressed: () {

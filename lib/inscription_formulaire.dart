@@ -81,7 +81,7 @@ class _UserLogState extends State<UserLog> {
                                     Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextButton(
-                      child: Text('Créer mon compte'),
+                      child: Text('Je valide mon numéro'),
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.black54,
@@ -91,7 +91,7 @@ class _UserLogState extends State<UserLog> {
                             fontStyle: FontStyle.italic),
                       ),
                       onPressed: () {
-                        // on verifie que les champs ne sont plus vide
+                        // on verifie que les champs ne sont plus vides
                         if (_formKey.currentState!.validate()) {
                           ValidForm(context);
                         }
@@ -111,7 +111,6 @@ class _UserLogState extends State<UserLog> {
                           return null;
                         },
                         onChanged: (text) {
-                          print('SaisiePrénom : $text');
                           uPrenom = text;
                         },
                         decoration: const InputDecoration(
@@ -141,7 +140,7 @@ class _UserLogState extends State<UserLog> {
                   //
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: TextFormField(/*
+                    child: TextFormField(
                         validator: (value) {
                           if (value == null ||
                               value.isEmpty ||
@@ -149,9 +148,8 @@ class _UserLogState extends State<UserLog> {
                             return 'Adresse email non conforme';
                           }
                           return null;
-                        },*/
+                        },
                         onChanged: (text) {
-                          print('SaisieEmail : $text');
                           uEmail = text;
                         },
                         decoration: const InputDecoration(
@@ -188,7 +186,6 @@ class _UserLogState extends State<UserLog> {
                         return null;
                       },
                       onChanged: (text) {
-                        print('SaisieVille : $text');
                         uVille = text;
                       },
                       decoration: const InputDecoration(
@@ -223,7 +220,6 @@ class _UserLogState extends State<UserLog> {
                           return null;
                         },
                         onChanged: (text) {
-                          print('SaisieNuméquipier : $text');
                           uUsernum = text;
                         },
                         keyboardType:TextInputType.number,
@@ -253,13 +249,12 @@ class _UserLogState extends State<UserLog> {
                       child: TextFormField(
 
                         onChanged: (text) {
-                          print('SaisieNuméroEquipe : $text');
                           uEkipnum = text;
                         },
                         keyboardType:TextInputType.number,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'Saisir votre numéro d\'équipe si vous le connaissez',
+                          hintText: 'Si vous le connaissez...',
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 129, 135, 135),
                               fontStyle: FontStyle.italic),
