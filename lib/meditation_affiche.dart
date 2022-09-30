@@ -131,10 +131,13 @@ class _AffMeditState extends State<AffMedit> with WidgetsBindingObserver {
             automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             title: Center(
-              child: Container(
-                child: Image.asset(
-                  'assets/EDR-logo-long.png',
-                  fit: BoxFit.fitWidth,
+              child: Padding(
+                padding: const EdgeInsets.all(120.0),
+                child: Container(
+                  child: Image.asset(
+                    'assets/EDR-logo-long.png',
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
             ),
@@ -562,7 +565,7 @@ class _AffMeditState extends State<AffMedit> with WidgetsBindingObserver {
                               builder: (context) => const IlsMeditent(),
                             ));
                       },
-                      child: Text('Ils\nméditent', textAlign: TextAlign.center),
+                      child: Text('Ils et elles méditent', textAlign: TextAlign.center),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: colorTitle[meditationdujour.code[0]],
                           elevation: 10)),

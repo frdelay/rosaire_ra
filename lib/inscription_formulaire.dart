@@ -71,34 +71,21 @@ class _UserLogState extends State<UserLog> {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(20.0),
+          
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
               child: Column(
                 children: [
-
-                                    Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: TextButton(
-                      child: Text('Je valide mon numéro'),
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.black54,
-                        textStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      onPressed: () {
-                        // on verifie que les champs ne sont plus vides
-                        if (_formKey.currentState!.validate()) {
-                          ValidForm(context);
-                        }
-                      },
+                  SizedBox(height: 20.0),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
+                    child: Text(
+                      'En remplissant ce formulaire vous recevrez tous les jours une méditation tenant compte de votre numéro d\'équipier et du calendrier des mystères',
+                      textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline6),
                     ),
-                  ),
-                  //
+                                    //
                   // SAISIE DU PRENOM
                   //
                   Padding(
@@ -167,7 +154,7 @@ class _UserLogState extends State<UserLog> {
                               width: 2,
                             ),
                           ),
-                          fillColor: Color(0xFFF7F3F3),
+                          fillColor: Color.fromARGB(255, 255, 255, 255),
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(15, 10, 20, 24),
                         ),
@@ -247,7 +234,12 @@ class _UserLogState extends State<UserLog> {
                   Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: TextFormField(
-
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Veuillez saisir votre n° d\équipe';
+                          }
+                          return null;
+                        },
                         onChanged: (text) {
                           uEkipnum = text;
                         },
@@ -271,12 +263,27 @@ class _UserLogState extends State<UserLog> {
                         ),
                       )),
 
-                  SizedBox(height: 20.0),
-                  Text(
-                    'En remplissant ce formulaire vous recevrez tous les jours une méditation tenant compte de votre numéro d\'équipier et du calendrier des mystères',
-                    textAlign: TextAlign.center,
-                  )
-                ],
+                
+                    Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextButton(
+                      child: Text('Je m\'inscris pour méditer'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.black54,
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic),
+                      ),
+                      onPressed: () {
+                        // on verifie que les champs ne sont plus vides
+                        if (_formKey.currentState!.validate()) {
+                          ValidForm(context);
+                        }
+                      },
+                    ),
+                  ),],
               ),
             ),
           ),

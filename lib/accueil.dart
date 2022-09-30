@@ -150,14 +150,47 @@ class _MyHomePageState extends State {
                 },
                 child: Padding(
                   padding: EdgeInsets.all(10),
-                  child: Text('Ils méditent',
+                  child: Text('Ils et elles méditent',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: Display(context).h() * 2.5)),
                 ),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xAA9cbbd3), elevation: 10)),
             color: Color.fromARGB(128, 89, 128, 162),
+          ),
+        
+        
+
+        
+                 //
+          // bouton d'affichage de la liste "ALLER VERS LE SITE"
+          //
+          SizedBox(height: Display(context).h() * 3),
+
+          Container(
+            padding: const EdgeInsets.all(10),
+            width: Display(context).w() * 80,
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            AfficheSite("https://equipes-rosaire.org/"),
+                      ));
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text('Aller sur le site',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: Display(context).h() * 2.5)),
+                ),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(233, 151, 188, 217), elevation: 10)),
+            color: Color.fromARGB(218, 107, 172, 200),
           )
-        ]));
+        ])
+        
+        );
   }
 }
