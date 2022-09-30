@@ -31,57 +31,58 @@ class _MyHomePageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: Display(context).h() * 10,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: Center(
-          child: Container(
-            child: Image.asset(
-              'assets/EDR-logo-long.png',
-              fit: BoxFit.fitWidth,
+        appBar: AppBar(
+          toolbarHeight: Display(context).h() * 10,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          title: Center(
+            child: Container(
+              child: Image.asset(
+                'assets/EDR-logo-long.png',
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
         ),
-      ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        Text("\nPour recevoir chaque matin le mystère du jour correspondant à votre numéro d'équipier\n",
-       textAlign: TextAlign.center
-       ),
-        //
-        // bouton d'affichage de la page "Je veux prier un mystère"
-        //
-        Container(
-          padding: EdgeInsets.all(Display(context).w() * 2),
-          child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UserLog(),
-                    ));
-              },
-              child: Padding(
-                padding: EdgeInsets.all(Display(context).w() * 2),
-                child: Text('Je veux prier un mystère chaque jour',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: Display(context).h() * 2.5)),
-              ),
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff1957CC), elevation: 10)),
-          color: Color(0x801957CC),
-        ),
-                Text("\nPour mieux connaître notre mouvement\n",
-       textAlign: TextAlign.center
-       ),
+        body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Text(
+              "\nPour recevoir chaque matin le mystère du jour correspondant à votre numéro d'équipier\n",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline4),
+          //
+          // bouton d'affichage de la page "Je veux prier un mystère"
+          //
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(Display(context).w() * 2),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserLog(),
+                      ));
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(Display(context).w() * 2),
+                  child: Text('Je veux prier un mystère chaque jour',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: Display(context).h() * 2.5)),
+                ),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF7DBEEA), elevation: 10)),
+            color: Color.fromARGB(165, 86, 154, 185),
+          ),
+          Text("\nPour mieux connaître notre mouvement\n",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline5),
           //
           // bouton d'affichage de la liste "Un mystère chaque jour"
           //
-                             SizedBox(height: Display(context).h() * 3),
-
+          SizedBox(height: Display(context).h() * 1),
           Container(
             padding: const EdgeInsets.all(10),
-            width:Display(context).w() *80,
+            width: Display(context).w() * 80,
             child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -92,24 +93,23 @@ class _MyHomePageState extends State {
                       ));
                 },
                 child: Padding(
-                  padding: EdgeInsets.all(Display(context).w() * 2),
+                  padding: EdgeInsets.all(Display(context).w() * 1.5),
                   child: Text('Une prière chaque jour',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: Display(context).h() * 2.5)),
                 ),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffac7a10), elevation: 10)),
-            color: Color(0x80ac7a10),
+                    backgroundColor: Color(0x94cadae9), elevation: 10)),
+            color: Color.fromARGB(128, 89, 128, 162),
           ),
           //
           // bouton d'affichage de la liste "Rejoindre une équipe"
           //
-                                SizedBox(height: Display(context).h() * 3),
+          SizedBox(height: Display(context).h() * 3),
 
           Container(
             padding: const EdgeInsets.all(10),
-                        width:Display(context).w() *80,
-
+            width: Display(context).w() * 80,
             child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -126,21 +126,20 @@ class _MyHomePageState extends State {
                       style: TextStyle(fontSize: Display(context).h() * 2.5)),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff96143f),
+                  backgroundColor: Color(0xFFadd2f1),
                   elevation: 10,
                 )),
-            color: Color(0xaa96143f),
+            color: Color.fromARGB(165, 86, 154, 185),
           ),
 
           //
           // bouton d'affichage de la liste "Ils méditent"
           //
-                                SizedBox(height: Display(context).h() * 3),
+          SizedBox(height: Display(context).h() * 3),
 
           Container(
             padding: const EdgeInsets.all(10),
-                        width:Display(context).w() *80,
-
+            width: Display(context).w() * 80,
             child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -151,15 +150,14 @@ class _MyHomePageState extends State {
                 },
                 child: Padding(
                   padding: EdgeInsets.all(10),
-                  child: Text('Ils\nméditent',
+                  child: Text('Ils méditent',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: Display(context).h() * 2.5)),
                 ),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff2E986E), elevation: 10)),
-            color: Color(0x902E986E),
+                    backgroundColor: Color(0xAA9cbbd3), elevation: 10)),
+            color: Color.fromARGB(128, 89, 128, 162),
           )
         ]));
-      
   }
 }
