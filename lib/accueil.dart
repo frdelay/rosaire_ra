@@ -36,10 +36,13 @@ class _MyHomePageState extends State {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: Center(
-            child: Container(
-              child: Image.asset(
-                'assets/EDR-logo-long.png',
-                fit: BoxFit.fitWidth,
+            child: Padding(
+              padding: const EdgeInsets.all(120.0),
+              child: Container(
+                child: Image.asset(
+                  'assets/EDR-logo-long.png',
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
           ),

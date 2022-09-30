@@ -53,11 +53,14 @@ class EnvMsg extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           title: Center(
-            child: Container(
-              height: 80,
-              child: Image.asset(
-                'assets/EDR-logo-long.png',
-                fit: BoxFit.fitWidth,
+            child: Padding(
+              padding: const EdgeInsets.all(120.0),
+              child: Container(
+                height: 80,
+                child: Image.asset(
+                  'assets/EDR-logo-long.png',
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
           ),
